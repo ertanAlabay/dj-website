@@ -1,0 +1,16 @@
+{% load static %}
+
+<!-- Proje hakkındaki yorumların ekranda gösterilmesi için yapılan kod yapısı -->
+<div class="swiper-slide">
+  <div class="testimonal-info ak-style1">
+      <div class="slider-info">
+          <div class="d-flex justify-content-between align-items-end">
+              <div>
+                  <h5 class="name">{{people.fullname}}</h5>
+                  <p class="from">{{people.title}}</p>
+              </div>
+          </div>
+          <h4 class="desp">{{ people.description }}</div>
+      <img src="{{people.image.url}}" alt="..." class="testimaonial-slide-img">
+  </div>
+</div>

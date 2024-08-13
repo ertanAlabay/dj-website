@@ -1,0 +1,41 @@
+{% load static %}
+
+{% block content %}
+
+
+<!-- 
+Workpacketları listelemek için bir kategori yapısı yapılmıştır.
+-->
+<div class="ak-height-80 ak-height-lg-40"></div>
+<div class="container">
+  <div class="company-tab">
+    <ul class="tabs">
+      <a  href="/workpacket">
+        <li>
+          All&emsp;
+        </li>
+      </a>
+      {% for numberworkpacket in numberworkpackets  %}
+          <a href="{% url 'workpacket_by_number' numberworkpacket.slug  %}">
+            <li class="active">
+              {{numberworkpacket.title|title}}&emsp;
+            </li>
+          </a>
+      {% endfor %}
+      <div class="primary-color-border"></div>
+    </ul>
+  </div>
+  {% for numberworkpacket in numberworkpackets  %}
+    <div class="company-tab">
+      <div class="tabs-content">
+        <div class="list">
+          <div class="ak-section-heading ak-style-1 ak-type-1">
+              <h3 class="desp">{{ numberworkpacket.description }}</h3>
+          </div>   
+        </div>
+      </div>
+    </div> 
+  {% endfor %}
+</div>
+
+{% endblock %}

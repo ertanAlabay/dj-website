@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Podcasts {% endblock %}
+
+{% block content %}
+
+<!-- Sayfanın Header kısmı -->
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div class="container">
+    <div class="common-page-title">
+        <h3 class="page-title">Podcasts</h3>
+    </div>
+    <div class="primary-color-border"></div>
+</div>
+
+<!-- Sayfa içeriği başlangıç noktası. -->
+<div class="ak-height-75 ak-height-lg-80"></div>
+<section class="container">
+    <div class="blog-feature">
+        <div class="feature-content" data-aos="fade-right" data-aos-delay="600"
+            style="display: flex; justify-content: center; align-items: center;">
+            <p class="desp">
+                This page features the podcasts produced for the project.
+            </p>
+        </div>
+        <div class="feature-img" data-aos="fade-left" data-aos-delay="600">
+            <img src="{% static 'img/blog-show.jpg' %}" class="ak-bg" alt="...">
+        </div>
+    </div>
+</section>
+
+<!-- Podcast içeriklerin listelendiği kısım. -->
+<div class="ak-height-50 ak-height-lg-50"></div>
+<div class="container">
+    
+    <!-- Podcast verilerini dbden alarak bu kısmda listelemektedir. -->
+    {% for podcast in podcasts %}
+        {% include "myapp/partials/_podcasts.html" %}
+    {% endfor %}
+
+</div>
+<div class="ak-height-100 ak-height-lg-60"></div>
+    <div id="pagination-container" class="pagination-style"></div>
+</div>
+
+{% endblock %}

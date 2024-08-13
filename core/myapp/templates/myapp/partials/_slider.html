@@ -1,0 +1,23 @@
+{% load static %}
+
+<!-- 
+Anasayfada slayt kısmını oluşturan yapı.
+Burada dbden alınan veriler ekranda gösterilmektedir. 
+-->
+<div class="swiper-slide" >
+    <div class="ak-hero ak-style1 slide-inner">
+        <img src="{{ slide.image.url }}" class="ak-hero-bg ak-bg object-cover" alt="...">
+        <div class="container" style="">
+            <div class="hero-slider-info" style="margin-top: 500px; height: 30%; width: 500px; background-color: black; padding: 20px; opacity: 70%;">
+                <div class="slider-info">
+                    <div class="hero-title"> 
+                        <h1 class="hero-main-title"  data-swiper-parallax="300" style="">{{ slide.title }}</h1>
+                        <!--<h1 class="hero-main-title-1 style-2" data-swiper-parallax="100">MAINTENANCE</h1>-->
+                        <p class="mini-title" data-swiper-parallax="400" style="word-wrap:break-word;">{{ slide.description }}</p>
+                    </div>
+                    <div class="ak-height-45 ak-height-lg-30"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

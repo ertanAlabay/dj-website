@@ -1,0 +1,24 @@
+{% load static %}
+
+
+<!-- 
+Workpacket card yapısını oluşturan kod yapısı
+-->
+<div class="service-card" data-aos="fade-left">
+  <a href="/workpacket" class="card-img">
+    <img
+      src="{{ numberworkpacket.image.url }}"
+      class="ak-bg"
+      alt="..."
+    />
+  </a>
+  <div class="card-info">
+    <a href="/workpacket/{{numberworkpacket.slug}}" class="card-title"
+      >{{ numberworkpacket.title }}</a
+    >
+    <p class="card-desp">
+      {{ numberworkpacket.description }}
+    </p>
+    <a href="/workpacket/{{numberworkpacket.slug}}" class="more-btn">VIEW MORE</a>
+  </div>
+</div>

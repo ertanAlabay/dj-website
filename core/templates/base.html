@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="stylesheet" href="{% static 'css/plugins/lightgallery.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/plugins/swiper.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/plugins/aos.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/plugins/bootstrap.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/plugins/fontawesome.min.css' %}" />
+  <link rel="stylesheet" href="{% static 'sass/style.css' %}" />
+  <!--{% block css_files %} {% endblock %}-->
+  <title>{% block title %} {% endblock %}| Disaster Journalism</title>
+</head>
+<body>
+  
+  {% include "partials/_preload.html" %}
+  {% include "partials/_navbar.html" %}
+  {% block content %}{% endblock %}
+  {% include "partials/_footer.html" %}
+  
+
+  <script src="{% static 'js/plugins/jquery-3.7.1.min.js' %}"></script>
+  <script src="{% static 'js/plugins/lightgallery.min.js' %}"></script>
+  <script src="{% static 'js/plugins/simplePagination.min.js' %}"></script>
+  <script src="{% static 'js/plugins/aos.js' %}"></script>
+  <script src="{% static 'js/plugins/swiper.min.js' %}"></script>
+  <script src="{% static 'js/plugins/SplitText.min.js' %}"></script>
+  <script src="{% static 'js/plugins/bootstrap.bundle.min.js' %}"></script>  
+  <script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>
