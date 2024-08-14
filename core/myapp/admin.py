@@ -1,11 +1,20 @@
 from django.contrib import admin
 
-from .models import WorkPacket, Partner, Slide, Event, NumberWorkPacket, Video, Podcast, Gallery, People
+from .models import MainpageAbout, MainpageNews, MainpageOutput, MainpageVideo, MainpageView, MainpageWorkpacket, ModelView, WorkPacket, Partner, Slide, Event, NumberWorkPacket, Video, Podcast, Gallery, People
 
 # Register your models here.
 
 class SiteAdmin(admin.ModelAdmin):
   list_filter = ("numberpacket",)
+
+# Main page eklenen içerikler
+admin.site.register(MainpageAbout)
+admin.site.register(MainpageOutput)
+admin.site.register(MainpageWorkpacket)
+admin.site.register(MainpageNews)
+admin.site.register(ModelView)
+admin.site.register(MainpageView)
+admin.site.register(MainpageVideo)
 
 admin.site.register(WorkPacket, SiteAdmin)
 admin.site.register(Partner)

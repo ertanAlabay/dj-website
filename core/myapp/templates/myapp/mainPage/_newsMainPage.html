@@ -1,0 +1,28 @@
+{% load static %}
+
+
+<!-- 5. Events / Blog / News -->
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div class="ak-height-125 ak-height-lg-80" id="events"></div>
+<div class="container">
+    <div class="center-section-heading" data-aos="fade-up">
+        <div class="ak-section-heading ak-style-1">
+            <div class="background-text" data-aos="fade-left" data-aos-delay="200" data-aos-duration="1000">
+                {{ newsMain.backHeader }}
+            </div>
+            <div class="text-md-center">
+                <h2 class="ak-section-title">{{ newsMain.header }}</h2>
+                <p class="ak-section-subtitle">{{ newsMain.descriptions }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="ak-height-50 ak-height-lg-50"></div>
+    <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 g-5 g-lg-4">
+        <!-- Event sayfasından 3 adet öge anasayfada gösterilmektedir. -->
+        {% for event in events|slice:":3" %}
+            {% include "myapp/partials/_blogcard.html" %}
+        {% endfor %} 
+    </div>
+</div>
+<!-- Events/Blog/News Bitiş -->

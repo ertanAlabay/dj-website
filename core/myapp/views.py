@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp.models import  WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
+from myapp.models import  MainpageNews, MainpageOutput, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelView, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
 from django.conf import settings
 #from myapp.forms import ContactForm
 
@@ -10,6 +10,15 @@ from django.conf import settings
 # Sitenin özetinin gösterildiği kısım
 def index(request):
   context = {
+
+    "aboutMains": MainpageAbout.objects.all(),
+    "outputMains": MainpageOutput.objects.all(),
+    "workpacketMains": MainpageWorkpacket.objects.all(),
+    "newsMains": MainpageNews.objects.all(),
+    "guidebooks": ModelGuidebook.objects.all(),
+    "viewMains": MainpageView.objects.all(),
+    "videoMains": MainpageVideo.objects.all(),
+
     "workpackets": WorkPacket.objects.all(),
     "partners": Partner.objects.all(),
     "slides": Slide.objects.all(),
