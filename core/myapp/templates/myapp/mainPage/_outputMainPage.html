@@ -1,0 +1,25 @@
+{% load static %}
+
+<!-- 3. Output Başlangıç -->
+<div class="ak-height-125 ak-height-lg-80" id="output"></div>
+<div class="container">
+    <div class="ak-section-heading ak-style-1">
+        <div class="background-text">{{ outputMain.backHeader }}</div>
+        <h2 class="ak-section-title">{{ outputMain.header }}</h2>
+        <p class="ak-section-subtitle">{{ outputMain.descriptions }}</p>
+    </div>
+
+    {% for videoMain in videoMains %}
+        {% include "myapp/mainPage/_videoMainPage.html" %}
+    {% endfor %}
+    
+    {% for infoMain in infoMains %}
+        {% include "myapp/mainPage/_galleryMainPage.html" %}
+    {% endfor %}
+
+    {% for podcastMain in podcastMains %}
+        {% include "myapp/mainPage/_podcastsMainPage.html" %}
+    {% endfor %}
+    
+</div>
+<!-- Output Bitiş -->

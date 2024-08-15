@@ -31,6 +31,11 @@ class WorkPacket(models.Model):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
     
+
+
+
+
+
 # Ortakların isim, resim, site ve açıklama bilgilerini saklayan tablo yapısı
 class Partner(models.Model):
     title = models.CharField(max_length=100)
@@ -45,10 +50,7 @@ class Partner(models.Model):
 class Event(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField()
-    date = models.CharField(max_length=100)
     description = RichTextField()
-    writerName = models.CharField(max_length=100)
-    writerTitle = models.CharField(max_length=100)
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
 
     def __str__(self):
@@ -102,3 +104,106 @@ class People(models.Model):
 
     def __str__(self):
         return f"{self.fullname}"
+    
+
+    
+
+# Oluşturulan yazı, makale, haber, etkinlik yazıları için oluşturulan tablo yapısı
+class ModelGuidebook(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField()
+    description = RichTextField()
+    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
+
+    def __str__(self):
+        return f"{self.title}"
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+class ModelView(models.Model):
+    fullname = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="slides/img")
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.fullname}"
+
+# Anasayfadaki video içeriği
+
+
+class MainpageAbout(models.Model):
+    header = models.CharField(max_length=100)
+    backHeader = models.CharField(max_length=100)
+    descriptions = models.TextField()
+
+    def __str__(self):
+        return f"{self.header}"
+    
+class MainpageOutput(models.Model):
+    header = models.CharField(max_length=100)
+    backHeader = models.CharField(max_length=100)
+    descriptions = models.TextField()
+
+    def __str__(self):
+        return f"{self.header}"
+    
+
+class MainpageVideo(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="videos/img")
+    URL = models.URLField(max_length=150)
+
+    def __str__(self):
+        return f"{self.title}"    
+    
+
+class MainpageVideo(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="videos/img")
+    URL = models.URLField(max_length=150)
+
+    def __str__(self):
+        return f"{self.title}" 
+
+
+class MainpageInfo(models.Model):
+    title = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return f"{self.title}" 
+
+class MainpagePodcast(models.Model):
+    title = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return f"{self.title}" 
+    
+
+class MainpageWorkpacket(models.Model):
+    header = models.CharField(max_length=100)
+    backHeader = models.CharField(max_length=100)
+    descriptions = models.TextField()
+
+    def __str__(self):
+        return f"{self.header}"
+    
+
+class MainpageNews(models.Model):
+    header = models.CharField(max_length=100)
+    backHeader = models.CharField(max_length=100)
+    descriptions = models.TextField()
+
+    def __str__(self):
+        return f"{self.header}"
+    
+
+class MainpageView(models.Model):
+    header = models.CharField(max_length=100)
+    backHeader = models.CharField(max_length=100)
+    descriptions = models.TextField()
+
+    def __str__(self):
+        return f"{self.header}"

@@ -1,0 +1,33 @@
+{% load static %}
+
+<!-- 4. Workpacket Başlangıç -->
+<div class="ak-height-125 ak-height-lg-80" id="workpacket"></div>
+<div class="d-flex justify-content-center">
+    <div class="sticky-content container">
+        <div class="content style_2">
+            <div class="service">
+                <!-- Tüm Workpacketlar anasayfada gösterilmektedir. -->
+                {% for numberworkpacket in numberworkpackets %}
+                    {% include "myapp/partials/_workpackets.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="sidebar width-none">
+            <div class="services-content">
+                <div class="ak-section-heading ak-style-1">
+                    <div class="background-text" data-aos="fade-right" data-aos-duration="1000">
+                        {{ workpacketMain.backHeader }}
+                    </div>
+                    <h2 class="ak-section-title">{{ workpacketMain.header }}</h2>
+                    <p class="ak-section-subtitle">{{ workpacketMain.descriptions }}</p>
+                </div>
+            <!--
+                <div class="ak-height-50 ak-height-lg-10"></div>
+                <a href="/workpacket" class="more-btn">VIEW All EVENTS</a>
+            -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="scroll-end-point"></div>
+<!-- Workpacket Bitiş -->

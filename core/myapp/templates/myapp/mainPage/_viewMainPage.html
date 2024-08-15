@@ -1,0 +1,39 @@
+{% load static %}
+
+<!-- 8. Yorum Kısmı Başlangıç -->
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div class="ak-height-125 ak-height-lg-80" id="people"></div>
+<div class="container">
+    <div class="ak-testimonal-controll">
+        <div class="testimonal-heading" data-aos="fade-right">
+            <div class="ak-section-heading ak-style-1">
+                <div class="background-text" data-aos="fade-right" data-aos-duration="1000">{{viewMain.backHeader}}</div>
+                <h2 class="ak-section-title">{{ viewMain.header }}</h2>
+            </div>
+        </div>
+        <div class="testimonal-controll" data-aos="fade-left">
+            <button class="testimonal-prev button">
+                <img src="{% static 'img/prev.svg' %}" alt="..."><span> prev</span>
+            </button>
+            <button class="testimonal-next button">
+                <span>next</span> <img src="{% static 'img/next.svg' %}" alt="..">
+            </button>
+        </div>
+    </div>
+    <div class="ak-height-50 ak-height-lg-50"></div>
+        <div class="ak-testimonal" data-aos="fade-up">
+        <div class="ak-slider ak-slider-testimonal">
+            <div class="swiper-wrapper">
+                <!-- Yorumların gösterildiği kısım -->
+                {% for people in peoples %}
+                    {% include "myapp/partials/_people.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="testimonal-img">
+            <img src="{% static 'img/testimaonial-img-bg.png' %}" alt="..." />
+        </div>
+    </div>
+    
+</div>
+<!-- Yorum Kısmı Bitiş -->
