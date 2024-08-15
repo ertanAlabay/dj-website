@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp.models import  MainpageNews, MainpageOutput, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelView, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
+from myapp.models import  MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelView, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
 from django.conf import settings
 #from myapp.forms import ContactForm
 
@@ -18,6 +18,9 @@ def index(request):
     "guidebooks": ModelGuidebook.objects.all(),
     "viewMains": MainpageView.objects.all(),
     "videoMains": MainpageVideo.objects.all(),
+    "infoMains": MainpageInfo.objects.all(),
+    "podcastMains": MainpagePodcast.objects.all(),
+
 
     "workpackets": WorkPacket.objects.all(),
     "partners": Partner.objects.all(),

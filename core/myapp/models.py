@@ -132,13 +132,7 @@ class ModelView(models.Model):
         return f"{self.fullname}"
 
 # Anasayfadaki video içeriği
-class MainpageVideo(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="videos/img")
-    URL = models.URLField(max_length=150)
 
-    def __str__(self):
-        return f"{self.title}"
 
 class MainpageAbout(models.Model):
     header = models.CharField(max_length=100)
@@ -156,6 +150,38 @@ class MainpageOutput(models.Model):
     def __str__(self):
         return f"{self.header}"
     
+
+class MainpageVideo(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="videos/img")
+    URL = models.URLField(max_length=150)
+
+    def __str__(self):
+        return f"{self.title}"    
+    
+
+class MainpageVideo(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="videos/img")
+    URL = models.URLField(max_length=150)
+
+    def __str__(self):
+        return f"{self.title}" 
+
+
+class MainpageInfo(models.Model):
+    title = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return f"{self.title}" 
+
+class MainpagePodcast(models.Model):
+    title = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return f"{self.title}" 
+    
+
 class MainpageWorkpacket(models.Model):
     header = models.CharField(max_length=100)
     backHeader = models.CharField(max_length=100)
@@ -164,6 +190,7 @@ class MainpageWorkpacket(models.Model):
     def __str__(self):
         return f"{self.header}"
     
+
 class MainpageNews(models.Model):
     header = models.CharField(max_length=100)
     backHeader = models.CharField(max_length=100)
@@ -172,6 +199,7 @@ class MainpageNews(models.Model):
     def __str__(self):
         return f"{self.header}"
     
+
 class MainpageView(models.Model):
     header = models.CharField(max_length=100)
     backHeader = models.CharField(max_length=100)

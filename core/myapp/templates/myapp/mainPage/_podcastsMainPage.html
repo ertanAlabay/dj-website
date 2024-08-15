@@ -1,0 +1,22 @@
+{% load static %}
+
+<!-- Podcast Başlangıç-->
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div>
+  <h4>{{ podcastMain.title }}</h4>
+  <div class="container">
+      <!-- Podcast sayfasından 1 adet öge anasayfada gösterilmektedir. -->
+      {% for podcast in podcasts|slice:1 %}
+          {% include "myapp/partials/_podcasts.html" %}
+      {% endfor %}
+  <!-- Podcast Bitiş-->
+
+      <!-- Podcast sayfasına yönlendiren button -->
+      <div class="ak-height-50 ak-height-lg-20"></div>
+      <div class="container" style="display: flex; justify-content: center; align-items: center;">
+          <h4 class="title">
+              <a href="/podcast" class="title common-btn"> View More Podcasts</a>
+          </h4>
+      </div>
+  </div>
+</div>

@@ -12,50 +12,14 @@
     {% for videoMain in videoMains %}
         {% include "myapp/mainPage/_videoMainPage.html" %}
     {% endfor %}
-    <!-- Gallery Başlangıç-->
-    <div class="ak-height-125 ak-height-lg-80"></div>
-    <div class="gallery" id="static-thumbnails">
-        <div class="item">
-            <!-- Gallery sayfasından 1 adet öge anasayfada gösterilmektedir. -->
-            {% for gallery in gallerys|slice:1 %}
-                <a href="{{gallery.image.url}}">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 20px; background-color: black; opacity: 70%">
-                        <p style="text-align: center;">{{ gallery.title|title }}</p>
-                    </div>
-                    <img src="{{gallery.image.url}}" alt="Phto" />
-                    <div class="frame gallery-hover-icon">
-                        <span><img src="{% static 'img/zoom.svg' %}" alt="zoom"></span>
-                    </div>
-                </a>            
-            {% endfor %}
-        </div>
-    </div>
-    <!-- Gallery Bitiş-->
     
-    <!-- Gallery sayfasına yönlendiren button -->
-    <div class="ak-height-50 ak-height-lg-20"></div>
-    <div class="container" style="display: flex; justify-content: center; align-items: center;">
-            <h4 class="title">
-                <a href="/gallery" class="title common-btn"> View More Documants</a>
-            </h4>
-    </div>
+    {% for infoMain in infoMains %}
+        {% include "myapp/mainPage/_galleryMainPage.html" %}
+    {% endfor %}
 
-    <!-- Podcast Başlangıç-->
-    <div class="ak-height-125 ak-height-lg-80"></div>
-    <div class="container">
-        <!-- Podcast sayfasından 1 adet öge anasayfada gösterilmektedir. -->
-        {% for podcast in podcasts|slice:1 %}
-            {% include "myapp/partials/_podcasts.html" %}
-        {% endfor %}
-    <!-- Podcast Bitiş-->
+    {% for podcastMain in podcastMains %}
+        {% include "myapp/mainPage/_podcastsMainPage.html" %}
+    {% endfor %}
     
-        <!-- Podcast sayfasına yönlendiren button -->
-        <div class="ak-height-50 ak-height-lg-20"></div>
-        <div class="container" style="display: flex; justify-content: center; align-items: center;">
-            <h4 class="title">
-                <a href="/podcast" class="title common-btn"> View More Podcasts</a>
-            </h4>
-        </div>
-    </div>
 </div>
 <!-- Output Bitiş -->
