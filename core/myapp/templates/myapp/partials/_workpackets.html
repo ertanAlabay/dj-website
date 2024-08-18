@@ -3,22 +3,23 @@
 
 <!-- 
 Workpacket card yapısını oluşturan kod yapısı
+
 -->
 <div class="service-card" data-aos="fade-left">
-  <a href="/workpacket" class="card-img">
+  <a href="{% url 'workpacket_details' workpacketdeneme.slug %}" class="card-img">
     <img
-      src="{{ numberworkpacket.image.url }}"
+      src="{{ workpacketdeneme.image.url }}"
       class="ak-bg"
       alt="..."
     />
   </a>
   <div class="card-info">
-    <a href="/workpacket/{{numberworkpacket.slug}}" class="card-title"
-      >{{ numberworkpacket.title }}</a
-    >
+    <a href="{% url 'workpacket_details' workpacketdeneme.slug %}" class="card-title">
+      {{ workpacketdeneme.title }}
+    </a>
     <p class="card-desp">
-      {{ numberworkpacket.description }}
+      {{ workpacketdeneme.description }}
     </p>
-    <a href="/workpacket/{{numberworkpacket.slug}}" class="more-btn">VIEW MORE</a>
+    <a href="{% url 'workpacket_details' workpacketdeneme.slug %}" class="more-btn">VIEW MORE</a>
   </div>
 </div>

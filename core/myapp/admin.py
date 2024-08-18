@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import MainpageAbout, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelView, WorkPacket, Partner, Slide, Event, NumberWorkPacket, Video, Podcast, Gallery, People
+from .models import MainpageAbout, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelView, ModelWorkPacket, WorkPacket, Partner, Slide, Event, NumberWorkPacket, Video, Podcast, Gallery, People
 
 # Register your models here.
 
@@ -13,6 +13,7 @@ admin.site.register(MainpageOutput)
 admin.site.register(MainpageWorkpacket)
 admin.site.register(MainpageNews)
 admin.site.register(ModelView)
+admin.site.register(ModelWorkPacket)
 admin.site.register(MainpageView)
 admin.site.register(MainpageVideo)
 admin.site.register(MainpageInfo)

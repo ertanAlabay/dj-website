@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp.models import  MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelView, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
+from myapp.models import  MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelView, ModelWorkPacket, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
 from django.conf import settings
 #from myapp.forms import ContactForm
 
@@ -20,14 +20,12 @@ def index(request):
     "videoMains": MainpageVideo.objects.all(),
     "infoMains": MainpageInfo.objects.all(),
     "podcastMains": MainpagePodcast.objects.all(),
+    "workpacketdenemes": ModelWorkPacket.objects.all(),
 
-
-    "workpackets": WorkPacket.objects.all(),
     "partners": Partner.objects.all(),
     "slides": Slide.objects.all(),
-    "numberworkpackets": NumberWorkPacket.objects.all(),
     "podcasts": Podcast.objects.all(),
-    "events": Event.objects.all(),
+    "events": Event.objects.all()[::-1],
     "gallerys": Gallery.objects.all(),
     "peoples": People.objects.all(),
   }
@@ -72,15 +70,14 @@ def gallery(request):
 # Workpacketların saklandığı yapı
 def workpackets(request):
   context = {
-    "workpackets": WorkPacket.objects.filter(),
-    "numberworkpackets": NumberWorkPacket.objects.all()
+    "workpacketdenemes" : ModelWorkPacket.objects.all(),
+    #"workpackets": WorkPacket.objects.all(),
+    #"numberworkpackets": NumberWorkPacket.objects.all()
   }
   return render(request, "myapp/workpackets.html", context)
 
-# Workpacket kategori yapısı için
-def workpacket_by_number(request, slug):
-  context = {
-    "workpackets": WorkPacket.objects.filter(numberpacket__slug=slug),
-    "numberworkpackets": NumberWorkPacket.objects.all()
-  }
-  return render(request, "myapp/workpackets.html", context)
+def single_workpacket(request, slug):
+  single= ModelWorkPacket.objects.get(slug=slug)
+  return render(request, "myapp/single-workpacket.html",{
+    'single': single
+  })

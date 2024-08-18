@@ -106,7 +106,19 @@ class People(models.Model):
         return f"{self.fullname}"
     
 
+# Oluşturulan yazı, makale, haber, etkinlik yazıları için oluşturulan tablo yapısı
+class ModelWorkPacket(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="workpackets/img")
+    description = RichTextField()
+    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
+
+    def __str__(self):
+        return f"{self.title}"
     
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)  
 
 # Oluşturulan yazı, makale, haber, etkinlik yazıları için oluşturulan tablo yapısı
 class ModelGuidebook(models.Model):
