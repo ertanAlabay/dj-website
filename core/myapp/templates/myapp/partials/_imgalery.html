@@ -2,16 +2,17 @@
 
 
 <!-- 
-Görsel içeriklerin DBden alındığı kısımdır.
+Görsel içeriklerin DBden alındığı kısımdır.{{gallery.file.url}}
 -->
 <div class="item">
-    <a href="{{gallery.file.url}}">
+    <a href={{gallery.image.url}}>
       <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 20px; background-color: black; opacity: 70%">
         <p style="text-align: center;">{{ gallery.title|title }}</p>
       </div>
-      <img src="{{gallery.image.url}}" alt="Photo" />
+      <img src={{gallery.image.url}} alt="Photo" />
       <div class="frame gallery-hover-icon">
         <span><img src="{% static 'img/zoom.svg' %}" alt="zoom"></span>
       </div>
     </a>
+
 </div>

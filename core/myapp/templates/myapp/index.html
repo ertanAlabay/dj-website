@@ -153,13 +153,13 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
 <!-- Partnerlerin modal yapısı burada bulunmaktadır. -->    
 {% for partner in partners %}
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop{{partner.id}}" 
+    <div class="modal fade " id="staticBackdrop{{partner.id}}" 
         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel{{partner.id}}" aria-hidden="true">
         
-        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content" style="background-color: #101010; border-color: #fff; font-family: Sarabun; font-size: 18px; font-weight: 400;">
-                <div class="modal-header">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered border-none">
+            <div class="modal-content" style="background-color: #101010; border-color: #808080; font-family: Sarabun; font-size: 18px; font-weight: 400;">
+                <div class="modal-header" style="border:none;">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #d3d3d3"></button>
                 </div>
                 <div class="modal-body">
