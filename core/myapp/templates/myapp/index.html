@@ -120,7 +120,7 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
                 </div>
                 <h2 class="ak-section-title">Partners</h2>
                 <p class="ak-section-subtitle">
-                    6 tane ortak eklenecek. Üzerine tiklandiginda pop-up olacak.
+                    We extend our deepest gratitude to our partners for their crucial role, which significantly contributes to the success of our project and the broader goal of improving disaster journalism.
                 </p>
             </div>
             <div class="ak-height-50 ak-height-lg-10"></div>
@@ -137,7 +137,7 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
                                         <p class="desp">{{partner.title}}</p>
                                     </div>
                                     <div class="team-info-social">
-                                        <a href="{{partner.website}}" class="icon">
+                                        <a href="{{partner.website}}" target="_blank" class="icon">
                                             <img src="{% static 'img/linkedinicon.svg' %}" alt="LinkedIn"/>
                                         </a>
                                     </div>
@@ -153,13 +153,13 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
 <!-- Partnerlerin modal yapısı burada bulunmaktadır. -->    
 {% for partner in partners %}
     <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop{{partner.id}}" 
+    <div class="modal fade " id="staticBackdrop{{partner.id}}" 
         data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel{{partner.id}}" aria-hidden="true">
         
-        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
-            <div class="modal-content" style="background-color: #101010; border-color: #fff; font-family: Sarabun; font-size: 18px; font-weight: 400;">
-                <div class="modal-header">
+        <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered border-none">
+            <div class="modal-content" style="background-color: #101010; border-color: #808080; font-family: Sarabun; font-size: 18px; font-weight: 400;">
+                <div class="modal-header" style="border:none;">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="background-color: #d3d3d3"></button>
                 </div>
                 <div class="modal-body">

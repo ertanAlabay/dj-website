@@ -3,7 +3,7 @@
 
 <!-- Videoların listelenmesini sağlayan kod yapısı -->
 <div class="col">
-    <div class="blog-card" data-aos="fade-up">
+    <div class="blog-card justify-content-center display-flex align-items-center" data-aos="fade-up">
 <!--
 
     
@@ -19,7 +19,7 @@
 
 -->
 
-            <a href="{{video.URL}}"
+            <a href={{ video.URL }}
                 class="ak-video-block ak-style1 ak-video-open ak-bg ak-parallax_bg imagesZoom"
                 style="height:200px; width: 300px;"
                 data-src="{{video.image.url}}" data-aos="zoom-out-down" data-aos-duration="1000"
@@ -29,7 +29,7 @@
                 </span>
             </a>
             <div class="blog-body-info">
-                <p class="blog-text">17.10.2023</p>
+                <p class="blog-text"><br/>17.10.2023</p>
                 <a href="{{video.URL}}" class="blog-title">{{video.title|title}}</a>
             </div>
     </div>
