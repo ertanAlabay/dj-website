@@ -16,7 +16,7 @@
 </div>
 
 
-<!-- Sayfa içeriği başlangıç noktası. -->
+<!-- Sayfa içeriği başlangıç noktası. 
 <div class="ak-height-75 ak-height-lg-80"></div>
 <section class="container">
   <div class="blog-feature">
@@ -32,7 +32,7 @@
       </div>
   </div>
 </section>
-
+-->
 <!-- Blog/event/news içeriklerinin listelendiği kısım. -->
 <div class="ak-height-50 ak-height-lg-50"></div>
 <div class="container">
@@ -40,9 +40,9 @@
     
         <!-- yazıların listelendiği kısım -->
         {% for guidebook in guidebooks %}
-            {% include "app/partials/_guidebooks.html" %}
+            {% include "myapp/partials/_guidebook.html" %}
         {% endfor %}
-
+        
     </div>
     <div class="ak-height-100 ak-height-lg-60"></div>
     <div id="pagination-container" class="pagination-style"></div>

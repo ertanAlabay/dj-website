@@ -34,7 +34,11 @@ class WorkPacket(models.Model):
 
 
 
-
+class ModelNavbar(models.Model):
+    title = models.CharField(max_length=100, help_text="Please just enter one of these words: 'home, about, output, workpackage, news, partner, view, contact'.")
+       
+    def __str__(self):
+        return self.title
 
 # Ortakların isim, resim, site ve açıklama bilgilerini saklayan tablo yapısı
 class Partner(models.Model):
@@ -192,7 +196,12 @@ class MainpagePodcast(models.Model):
     
     def __str__(self):
         return f"{self.title}" 
+
+class MainpageGuidebook(models.Model):
+    title = models.CharField(max_length=100)
     
+    def __str__(self):
+        return f"{self.title}" 
 
 class MainpageWorkpacket(models.Model):
     header = models.CharField(max_length=100)

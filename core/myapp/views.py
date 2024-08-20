@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp.models import  MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelView, ModelWorkPacket, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
+from myapp.models import  MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelNavbar, ModelView, ModelWorkPacket, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
 from django.conf import settings
 #from myapp.forms import ContactForm
 
@@ -19,8 +19,11 @@ def index(request):
     "viewMains": MainpageView.objects.all(),
     "videoMains": MainpageVideo.objects.all(),
     "infoMains": MainpageInfo.objects.all(),
+    "guideMains": MainpageGuidebook.objects.all(),
     "podcastMains": MainpagePodcast.objects.all(),
     "workpacketdenemes": ModelWorkPacket.objects.all(),
+
+    "navModels": ModelNavbar.objects.all(),
 
     "partners": Partner.objects.all(),
     "slides": Slide.objects.all(),
@@ -35,27 +38,33 @@ def index(request):
 # Video içeriği
 def video(request):
   context = {
-    "videos": Video.objects.all()
+    "videos": Video.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/video.html", context)
 
 # Etkinlik, haber, blog yazısı için içerik
 def event(request):
   context = {
-    "events": Event.objects.all()
+    "events": Event.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/events.html", context)
 
 # Tek blog yazısının gösterilmesi için oluşturulan yapı
 def single_event(request, slug):
+  
   single= Event.objects.get(slug=slug)
   return render(request, "myapp/single-event.html",{
-    'single': single
+    'single': single,
+    "navModels": ModelNavbar.objects.all(),
   })
 
 # Podcast içeriği
 def podcast(request):
   context = {
+    
+    "navModels": ModelNavbar.objects.all(),
     "podcasts": Podcast.objects.all()
   }
   return render(request, "myapp/podcast.html", context)
@@ -63,7 +72,8 @@ def podcast(request):
 # Gallery içeriği
 def gallery(request):
   context = {
-    "gallerys": Gallery.objects.all()
+    "gallerys": Gallery.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/gallery.html", context)
 
@@ -71,6 +81,7 @@ def gallery(request):
 def workpackets(request):
   context = {
     "workpacketdenemes" : ModelWorkPacket.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
     #"workpackets": WorkPacket.objects.all(),
     #"numberworkpackets": NumberWorkPacket.objects.all()
   }
@@ -79,5 +90,22 @@ def workpackets(request):
 def single_workpacket(request, slug):
   single= ModelWorkPacket.objects.get(slug=slug)
   return render(request, "myapp/single-workpacket.html",{
-    'single': single
+    'single': single,
+    "navModels": ModelNavbar.objects.all()
+  })
+
+# Etkinlik, haber, blog yazısı için içerik
+def guidebook(request):
+  context = {
+    "guidebooks": ModelGuidebook.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
+  }
+  return render(request, "myapp/guidebook.html", context)
+
+# Tek blog yazısının gösterilmesi için oluşturulan yapı
+def single_guidebook(request, slug):
+  single= ModelGuidebook.objects.get(slug=slug),
+  return render(request, "myapp/single-guidebook.html",{
+    'single': single,
+    "navModels": ModelNavbar.objects.all()
   })

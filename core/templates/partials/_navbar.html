@@ -13,31 +13,11 @@
           <div class="ak-main-header-center">
             <div class="ak-nav ak-medium">
               <ul class="ak-nav_list">
-                <li>
-                  <a href="/#" class="text-hover-animaiton">Home</a>
-                </li>
-                <li>
-                  <a href="/#about" class="text-hover-animaiton">About</a>
-                </li>
-                <li>
-                  <a href="/#output" class="text-hover-animaiton">Outputs</a>
-                </li>
-                <li>
-                  <a href="/#workpacket" class="text-hover-animaiton">Work Packets</a>
-                </li>
-                <li>
-                  <a href="/#events" class="text-hover-animaiton">Events</a>
-                </li>
-                <li>
-                  <a href="/#partners" class="text-hover-animaiton">Partners</a>
-                </li>
-                <li>
-                  <a href="/#people" class="text-hover-animaiton">People</a>
-                </li>
-                
-                <li>
-                  <a href="/#contact" class="text-hover-animaiton">Contact</a>
-                </li>
+                {% for navModel in navModels %}
+                  <li>
+                    <a href="/#{{ navModel.title }}" class="text-hover-animaiton">{{ navModel.title }}</a>
+                  </li>
+                {% endfor %}
               </ul>
             </div>
           </div>

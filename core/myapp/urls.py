@@ -11,4 +11,6 @@ urlpatterns = [
     path("podcast", views.podcast, name="podcast"),
     path("event", views.event, name="event"),
     path("event/<slug:slug>/", views.single_event, name="event_details" ),      
+    path("guidebook", views.guidebook, name="guidebook"),
+    path("guidebook/<slug:slug>/", views.single_guidebook, name="guidebook_details" ),      
 ]
