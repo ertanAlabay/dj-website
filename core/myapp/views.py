@@ -8,6 +8,20 @@ from django.conf import settings
 # Anasayfa için oluşturulan yapı. 
 # Tüm tablolarla bağlantılı.
 # Sitenin özetinin gösterildiği kısım
+def custom_error_400(request, exception=None):
+    return render(request, '404.html', status=400)
+
+def custom_error_403(request, exception=None):
+    return render(request, '404.html', status=403)
+
+def custom_error_404(request, exception=None):
+    return render(request, '404.html', status=404)
+
+def custom_error_500(request):
+    return render(request, '404.html', status=500)
+
+
+
 def index(request):
   context = {
 
@@ -109,3 +123,9 @@ def single_guidebook(request, slug):
     'single': single,
     "navModels": ModelNavbar.objects.all()
   })
+
+
+
+
+
+

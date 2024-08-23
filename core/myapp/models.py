@@ -32,6 +32,18 @@ class WorkPacket(models.Model):
         super().save(*args, **kwargs)
     
 
+class ModelGuidebook(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="documents/workpackets/img")
+    description = models.TextField()
+    file = models.FileField(upload_to="documents/workpackets/pdf")
+    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
+    #numberpacket = models.ForeignKey(NumberWorkPacket, default=1, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return f"{self.title}"
+
+
 
 
 class ModelNavbar(models.Model):
@@ -128,7 +140,7 @@ class ModelWorkPacket(models.Model):
 class ModelGuidebook(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField()
-    description = RichTextField()
+    file = models.FileField(upload_to="documents/workpackets/pdf")
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
 
     def __str__(self):

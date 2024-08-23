@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+{% block no_navbar %}{% endblock %}
+{% block no_footer %}{% endblock %}
+<div class="error-section ak-bg ak-center" data-src=""><!--"{% static 'img/not-found-page-bg.png' %}"-->
+    <div class="error-content">
+        <h1 class="error-title ak-stroke-number color-white">404</h1>
+        <h2 class="erro-sub-title">Sorry! The Page isn't Found Here</h2>
+        <p class="erro-desp"><div class="go-to-home">
+            <a href="/" class="common-btn">
+                BACK TO HOME
+            </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

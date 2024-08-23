@@ -19,9 +19,17 @@
 <body>
   
   {% include "partials/_preload.html" %}
-  {% include "partials/_navbar.html" %}
+  
+  {% if not no_navbar %}
+      {% include "partials/_navbar.html" %}
+  {% endif %}
+  
   {% block content %}{% endblock %}
-  {% include "partials/_footer.html" %}
+
+  {% if not no_footer %}
+      {% include "partials/_footer.html" %}
+  {% endif %}
+  
   
 
   <script src="{% static 'js/plugins/jquery-3.7.1.min.js' %}"></script>
