@@ -19,16 +19,10 @@
 <body>
   
   {% include "partials/_preload.html" %}
-  
-  {% if not no_navbar %}
-      {% include "partials/_navbar.html" %}
-  {% endif %}
-  
+  {% include "partials/_navbar.html" %}
   {% block content %}{% endblock %}
+  {% include "partials/_footer.html" %}
 
-  {% if not no_footer %}
-      {% include "partials/_footer.html" %}
-  {% endif %}
   
   
 

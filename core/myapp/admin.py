@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import MainpageAbout, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, ModelNavbar, ModelView, ModelWorkPacket, WorkPacket, Partner, Slide, Event, NumberWorkPacket, Video, Podcast, Gallery, People
+from .models import FacebookLink, InstagramLink, MainpageAbout, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, ModelNavbar, ModelWorkPacket, SpotifyLink, WorkPacket, ModelPartner, MainpageSlide, ModelNews, NumberWorkPacket, ModelVideo, ModelPodcast, ModelGallery, ModelView, YoutubeLink
 
 # Register your models here.
 
@@ -22,21 +22,25 @@ admin.site.register(MainpageAbout)
 admin.site.register(MainpageOutput)
 admin.site.register(MainpageWorkpacket)
 admin.site.register(MainpageNews)
-admin.site.register(ModelView)
-admin.site.register(ModelWorkPacket)
-admin.site.register(ModelGuidebook)
 admin.site.register(MainpageView)
 admin.site.register(MainpageVideo)
 admin.site.register(MainpageInfo)
 admin.site.register(MainpagePodcast)
 admin.site.register(MainpageGuidebook)
+admin.site.register(MainpageSlide)
 
-#admin.site.register(WorkPacket, SiteAdmin)
-admin.site.register(Partner)
-admin.site.register(Slide)
-admin.site.register(Event)
-#admin.site.register(NumberWorkPacket)
-admin.site.register(Video)
-admin.site.register(Podcast)
-admin.site.register(Gallery)
-admin.site.register(People)
+#Sosyal medya linkleri
+admin.site.register(YoutubeLink)
+admin.site.register(SpotifyLink)
+admin.site.register(FacebookLink)
+admin.site.register(InstagramLink)
+
+# Main page eklenen içerikler
+admin.site.register(ModelPartner)
+admin.site.register(ModelWorkPacket)
+admin.site.register(ModelGuidebook)
+admin.site.register(ModelNews)
+admin.site.register(ModelVideo)
+admin.site.register(ModelPodcast)
+admin.site.register(ModelGallery)
+admin.site.register(ModelView)

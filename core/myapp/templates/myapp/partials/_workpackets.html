@@ -18,8 +18,8 @@ Workpacket card yapısını oluşturan kod yapısı
       {{ workpacketdeneme.title }}
     </a>
     <p class="card-desp">
-      {{ workpacketdeneme.description|truncatewords:10 }}
+      {{ workpacketdeneme.description|truncatewords:10|safe }}
     </p>
-    <a href="{% url 'workpacket_details' workpacketdeneme.slug %}" class="more-btn">VIEW MORE</a>
+    <a href="{% url 'workpacket_details' workpacketdeneme.slug %}" class="more-btn">VIEW</a>
   </div>
 </div>
