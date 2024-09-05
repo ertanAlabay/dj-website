@@ -49,19 +49,19 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
     </div>
     <div class="social-hero">
         {% for youtubeLink in youtubeLinks %}
-            {% include "myapp/partials/_youtube.html" %}
+            {% include "myapp/links/_youtube.html" %}
         {% endfor %}
 
         {% for instaLink in instaLinks %}
-            {% include "myapp/partials/_instagram.html" %}
+            {% include "myapp/links/_instagram.html" %}
         {% endfor %}
         
         {% for spotifyLink in spotifyLinks %}
-            {% include "myapp/partials/_spotify.html" %}
+            {% include "myapp/links/_spotify.html" %}
         {% endfor %}
 
         {% for faceLink in faceLinks %}
-            {% include "myapp/partials/_facebook.html" %}
+            {% include "myapp/links/_facebook.html" %}
         {% endfor %}
 
         <div class="social-horizontal"></div>

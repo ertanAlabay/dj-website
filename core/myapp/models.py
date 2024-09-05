@@ -6,43 +6,9 @@ from ckeditor.fields import RichTextField
 # Workpacketların kategorize etmek için ilişki kullanarak oluşturduğumuz tablo
 # "Workpacket" tablosuyla "numberpacket" sütunu ilişkilendirilmiştir.  
 # Kategori kullanarak filtrelemek için iki tabloda da "slugify" kullanılmıştır.
-class NumberWorkPacket(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="number_workpacket/img")
-    description = models.TextField()
-    slug = models.SlugField(null=True, blank=True, unique=True, db_index=True)
-    
-    def __str__(self):
-        return f"{self.title}"
     
 # Workpacketların card yapısında kullanılacak db tablosu
-class WorkPacket(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="workpackets/img")
-    description = models.TextField()
-    file = models.FileField(upload_to="workpackets/pdf")
-    slug = models.SlugField(null=True, blank=True, unique=True, db_index=True)    
-    numberpacket = models.ForeignKey(NumberWorkPacket, null=True, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f"{self.title}"
-    
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
-    
-"""
-class ModelGuidebook(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="documents/workpackets/img")
-    description = models.TextField()
-    file = models.FileField(upload_to="documents/workpackets/pdf")
-    slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
-    #numberpacket = models.ForeignKey(NumberWorkPacket, default=1, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return f"{self.title}"
-"""
+
 
 # Oluşturulan yazı, makale, haber, etkinlik yazıları için oluşturulan tablo yapısı
 class ModelGuidebook(models.Model):
@@ -236,25 +202,25 @@ class MainpageView(models.Model):
         return f"{self.header}"
 
 
-class YoutubeLink(models.Model):
+class LinkYoutube(models.Model):
     URL = models.URLField(max_length=150)
 
     def __str__(self):
         return f"{self.URL}"
 
-class FacebookLink(models.Model):
+class LinkFacebook(models.Model):
     URL = models.URLField(max_length=150)
 
     def __str__(self):
         return f"{self.URL}"
 
-class SpotifyLink(models.Model):
+class LinkSpotify(models.Model):
     URL = models.URLField(max_length=150)
 
     def __str__(self):
         return f"{self.URL}"
     
-class InstagramLink(models.Model):
+class LinkInstagram(models.Model):
     URL = models.URLField(max_length=150)
 
     def __str__(self):

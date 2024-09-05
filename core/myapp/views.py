@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp.models import  FacebookLink, InstagramLink, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkPacket, SpotifyLink, WorkPacket, ModelPartner, MainpageSlide, NumberWorkPacket, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, YoutubeLink
+from myapp.models import  LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkPacket, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
 from django.conf import settings
 #from myapp.forms import ContactForm
 
@@ -43,19 +43,19 @@ def index(request):
     "infoMains": MainpageInfo.objects.all(),
     "guideMains": MainpageGuidebook.objects.all(),
     "podcastMains": MainpagePodcast.objects.all(),
-    "workpacketdenemes": ModelWorkPacket.objects.all(),
+    "workpacketModels": ModelWorkPacket.objects.all(),
 
     
-    "youtubeLinks": YoutubeLink.objects.all(),
-    "faceLinks": FacebookLink.objects.all(),
-    "spotifyLinks": SpotifyLink.objects.all(),
-    "instaLinks": InstagramLink.objects.all(),
+    "youtubeLinks": LinkYoutube.objects.all(),
+    "faceLinks": LinkFacebook.objects.all(),
+    "spotifyLinks": LinkSpotify.objects.all(),
+    "instaLinks": LinkInstagram.objects.all(),
     
     "navModels": ModelNavbar.objects.all(),
     "partners": ModelPartner.objects.all(),
     "slides": MainpageSlide.objects.all(),
     "podcasts": ModelPodcast.objects.all(),
-    "events": ModelNews.objects.all()[::-1],
+    "news": ModelNews.objects.all()[::-1],
     "gallerys": ModelGallery.objects.all(),
     "peoples": ModelView.objects.all(),
   }
@@ -63,7 +63,7 @@ def index(request):
   return render(request, "myapp/index.html", context)
 
 # Video içeriği
-def video(request):
+def videos(request):
   context = {
     "videos": ModelVideo.objects.all(),
     "navModels": ModelNavbar.objects.all(),
@@ -71,24 +71,24 @@ def video(request):
   return render(request, "myapp/video.html", context)
 
 # Etkinlik, haber, blog yazısı için içerik
-def event(request):
+def news(request):
   context = {
-    "events": ModelNews.objects.all(),
+    "news": ModelNews.objects.all(),
     "navModels": ModelNavbar.objects.all(),
   }
-  return render(request, "myapp/events.html", context)
+  return render(request, "myapp/news.html", context)
 
 # Tek blog yazısının gösterilmesi için oluşturulan yapı
-def single_event(request, slug):
+def single_news(request, slug):
   
   single= ModelNews.objects.get(slug=slug)
-  return render(request, "myapp/single-event.html",{
+  return render(request, "myapp/single-news.html",{
     'single': single,
     "navModels": ModelNavbar.objects.all(),
   })
 
 # Podcast içeriği
-def podcast(request):
+def podcasts(request):
   context = {
     
     "navModels": ModelNavbar.objects.all(),
@@ -107,7 +107,7 @@ def gallery(request):
 # Workpacketların saklandığı yapı
 def workpackets(request):
   context = {
-    "workpacketdenemes" : ModelWorkPacket.objects.all(),
+    "workpacketModels" : ModelWorkPacket.objects.all(),
     "navModels": ModelNavbar.objects.all(),
     #"workpackets": WorkPacket.objects.all(),
     #"numberworkpackets": NumberWorkPacket.objects.all()
@@ -122,7 +122,7 @@ def single_workpacket(request, slug):
   })
 
 # Etkinlik, haber, blog yazısı için içerik
-def guidebook(request):
+def guidebooks(request):
   context = {
     "guidebooks": ModelGuidebook.objects.all(),
     "navModels": ModelNavbar.objects.all(),

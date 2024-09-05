@@ -9,20 +9,21 @@
         <div class="copy-right">
             <p class="title  text-hover-animaiton">Copyright 2024, All Right reserved</p>
             <div class="social-icon">
+                
                 {% for youtubeLink in youtubeLinks %}
-                    {% include "myapp/partials/_youtube.html" %}
+                    {% include "myapp/links/_youtube.html" %}
                 {% endfor %}
 
                 {% for instaLink in instaLinks %}
-                    {% include "myapp/partials/_instagram.html" %}
+                    {% include "myapp/links/_instagram.html" %}
                 {% endfor %}
                 
                 {% for spotifyLink in spotifyLinks %}
-                    {% include "myapp/partials/_spotify.html" %}
+                    {% include "myapp/links/_spotify.html" %}
                 {% endfor %}
 
                 {% for faceLink in faceLinks %}
-                    {% include "myapp/partials/_facebook.html" %}
+                    {% include "myapp/links/_facebook.html" %}
                 {% endfor %}
             </div>
         </div>

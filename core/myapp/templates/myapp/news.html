@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Events {% endblock %}
+{% block title %}News {% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
 <div class="ak-height-125 ak-height-lg-80"></div>
 <div class="container">
     <div class="common-page-title">
-        <h3 class="page-title">Events Page</h3>
+        <h3 class="page-title">News Page</h3>
     </div>
     <div class="primary-color-border"></div>
 </div>
@@ -34,14 +34,15 @@
   </div>
 </section>
 -->
-<!-- Blog/event/news içeriklerinin listelendiği kısım. -->
+<!-- News içeriklerinin listelendiği kısım. -->
+ 
 <div class="ak-height-50 ak-height-lg-50"></div>
 <div class="container">
     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 g-5 g-lg-4 pagination-wrapper">
     
         <!-- yazıların listelendiği kısım -->
-        {% for event in events %}
-            {% include "myapp/partials/_events.html" %}
+        {% for newss in news %}
+            {% include "myapp/partials/_news.html" %}
         {% endfor %}
 
     </div>
