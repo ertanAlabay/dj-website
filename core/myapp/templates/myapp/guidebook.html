@@ -16,19 +16,18 @@
 </div>
 
 
-<!-- Sayfa içeriği başlangıç noktası. -->
+<!-- Sayfa içeriği başlangıç noktası.--> 
 <div class="ak-height-75 ak-height-lg-80"></div>
 <section class="container">
   <div class="blog-feature">
       <div class="feature-content" data-aos="fade-right" data-aos-delay="600"
           style="display: flex; justify-content: center; align-items: center;">
           <p class="desp">
-            Sayfanın amacını anlatan kısa bir metin eklenecek.
-            Yan tarafına güzel bir resim eklenecek
+            Our multilingual guidebooks are carefully crafted to serve as a comprehensive resource for journalists, students, academics, and anyone interested in disaster journalism.
           </p>
       </div>
       <div class="feature-img" data-aos="fade-left" data-aos-delay="600">
-          <img src="{% static 'img/blog-show.jpg' %}" class="ak-bg" alt="...">
+          <img src="{% static 'img/guide.png' %}" class="ak-bg" alt="...">
       </div>
   </div>
 </section>
@@ -37,10 +36,10 @@
 <div class="ak-height-50 ak-height-lg-50"></div>
 <div class="container">
     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 g-5 g-lg-4 pagination-wrapper">
-    
+
         <!-- yazıların listelendiği kısım -->
         {% for guidebook in guidebooks %}
-            {% include "app/partials/_guidebooks.html" %}
+            {% include "myapp/partials/_guidebook.html" %}
         {% endfor %}
 
     </div>

@@ -48,46 +48,22 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
         <div class="hero-swiper-pagination"></div>
     </div>
     <div class="social-hero">
-        <a href="" class="social-icon1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
-                <path
-                    d="M9.27491 8.83093L2.5 3.00265L2.5 4.38377L8.38256 9.44446L2.5 13.4864L2.5 18.1484L11.3955 12.0361L18.5 18.1484L18.5 16.7672L12.2878 11.4229L18.5 7.15432L18.5 2.49239L9.27491 8.83127L9.27491 8.83093ZM11.4738 10.7227L10.5881 11.342L3.53974 16.2695L3.53974 14.1481L9.22795 10.1715L10.1137 9.55219L17.5075 4.38311L17.5075 6.50455L11.4742 10.7227L11.4738 10.7227Z"
-                    fill="white" />
-            </svg>
-        </a>
-        <a href="" class="social-icon1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-                <g clip-path="url(#clip0_64_135)">
-                    <path
-                        d="M16.5 0.324375L16.4993 0.320374L10.6313 0.320374C7.76068 0.320374 5.54935 0.938375 5.54935 4.29437C5.54935 5.90771 6.43468 6.99037 7.27401 7.43237L7.27401 7.47904L5.81735 7.47904L5.81735 10.661L16.4993 10.661L16.4993 7.34771L11.21 7.34771C9.81735 7.34771 8.47068 7.08371 8.47068 5.35904C8.47068 3.65971 10.06 3.63437 11.2993 3.63437L16.5 3.63437L16.5 0.324375Z"
-                        fill="white" />
-                    <path d="M5.81799 16.0564L5.81799 12.739L16.5 12.739L16.5 16.0564L5.81799 16.0564Z"
-                        fill="white" />
-                    <path
-                        d="M0.5 14.399C0.5 15.4597 1.36067 16.3204 2.42133 16.3204C3.482 16.3204 4.36067 15.4597 4.36067 14.399C4.36067 13.3384 3.482 12.4777 2.42133 12.4777C1.36067 12.4784 0.5 13.339 0.5 14.399Z"
-                        fill="white" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_64_135">
-                        <rect width="16" height="16" fill="white" transform="translate(0.5 16.3204) rotate(-90)" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </a>
-        <a href="" class="social-icon1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 17 17" fill="none">
-                <g clip-path="url(#clip0_64_133)">
-                    <path
-                        d="M16.5 7.08128L9.20218 7.08128L9.20218 4.63269L6.35725 4.26533L6.35725 7.08128L4.54118 7.08128C3.71776 7.08128 3.15661 6.85356 3.15661 5.67145L3.15599 4.16622L0.611384 4.16622C0.577556 4.42653 0.5 5.32007 0.5 6.36007C0.5 8.53175 1.82557 10.0185 4.25942 10.0185L6.35725 10.0185L6.35725 12.4745L9.20218 12.4745L9.20218 10.0185L16.5 10.0185L16.5 7.08128Z"
-                        fill="white" />
-                </g>
-                <defs>
-                    <clipPath id="clip0_64_133">
-                        <rect width="16" height="16" fill="white" transform="translate(0.5 16.3204) rotate(-90)" />
-                    </clipPath>
-                </defs>
-            </svg>
-        </a>
+        {% for youtubeLink in youtubeLinks %}
+            {% include "myapp/links/_youtube.html" %}
+        {% endfor %}
+
+        {% for instaLink in instaLinks %}
+            {% include "myapp/links/_instagram.html" %}
+        {% endfor %}
+        
+        {% for spotifyLink in spotifyLinks %}
+            {% include "myapp/links/_spotify.html" %}
+        {% endfor %}
+
+        {% for faceLink in faceLinks %}
+            {% include "myapp/links/_facebook.html" %}
+        {% endfor %}
+
         <div class="social-horizontal"></div>
         <h6 class="social-link">FOLLOW US</h6>
     </div>
@@ -136,9 +112,40 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
                                     <div class="team-title">
                                         <p class="desp">{{partner.title}}</p>
                                     </div>
-                                    <div class="team-info-social">
-                                        <a href="{{partner.website}}" target="_blank" class="icon">
-                                            <img src="{% static 'img/linkedinicon.svg' %}" alt="LinkedIn"/>
+                                    <div class="team-info-social" >
+                                        <a href="{{partner.website}}" target="_blank" class="icon" style="display: flex; justify-content: center; align-items: center;">
+                                            <svg  version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                                width="25" height="25" viewBox="0 0 512.000000 512.000000"
+                                                preserveAspectRatio="xMidYMid meet">
+
+                                                <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                                fill="#fff" stroke="none">
+                                                <path d="M2375 4793 c-921 -80 -1710 -724 -1963 -1603 -68 -235 -87 -373 -86
+                                                -635 0 -249 16 -372 78 -598 206 -746 807 -1347 1553 -1553 224 -61 349 -77
+                                                598 -78 242 -1 343 11 559 65 621 155 1161 592 1453 1174 90 178 171 439 209
+                                                670 27 164 25 505 -4 675 -85 500 -304 918 -659 1261 -369 356 -836 571 -1343
+                                                618 -107 10 -303 12 -395 4z m252 -328 c189 -79 382 -463 482 -960 l28 -140
+                                                -288 -3 c-159 -1 -419 -1 -578 0 l-288 3 28 140 c78 389 215 715 365 871 92
+                                                96 169 123 251 89z m-678 -157 c-130 -257 -230 -578 -284 -910 l-6 -38 -421 0
+                                                c-396 0 -420 1 -414 18 4 9 31 60 61 113 223 394 564 692 985 860 52 21 101
+                                                38 108 38 7 1 -4 -32 -29 -81z m1294 46 c339 -134 628 -352 841 -634 76 -101
+                                                174 -259 201 -325 l15 -35 -419 0 -420 0 -6 38 c-54 332 -154 653 -284 910
+                                                -23 45 -37 82 -31 82 6 0 52 -16 103 -36z m-1630 -1441 c-5 -71 -8 -229 -8
+                                                -353 0 -124 3 -282 8 -352 l7 -128 -459 0 -459 0 -15 68 c-33 143 -41 233 -41
+                                                412 0 179 8 269 41 413 l15 67 459 0 459 0 -7 -127z m1574 30 c10 -127 10
+                                                -639 0 -765 l-9 -98 -618 0 -618 0 -9 98 c-4 53 -8 225 -8 382 0 157 4 329 8
+                                                383 l9 97 618 0 618 0 9 -97z m1246 30 c35 -157 41 -224 41 -413 0 -189 -6
+                                                -256 -41 -412 l-15 -68 -459 0 -458 0 7 98 c4 53 7 225 7 382 0 157 -3 329 -7
+                                                383 l-7 97 458 0 459 0 15 -67z m-2768 -1250 c54 -333 154 -654 284 -910 23
+                                                -46 38 -83 33 -83 -19 0 -222 84 -303 126 -242 125 -478 325 -644 546 -75 99
+                                                -173 257 -200 323 l-15 35 419 0 420 0 6 -37z m1470 20 c-2 -10 -16 -76 -30
+                                                -146 -99 -492 -303 -885 -491 -947 -226 -75 -497 378 -617 1033 l-15 77 578 0
+                                                c545 0 578 -1 575 -17z m1150 -18 c-8 -20 -39 -78 -70 -130 -183 -312 -453
+                                                -570 -769 -736 -87 -46 -284 -129 -306 -129 -6 0 8 37 31 83 130 256 230 577
+                                                284 910 l6 37 420 0 419 0 -15 -35z"/>
+                                                </g>
+                                                </svg>
+
                                         </a>
                                     </div>
                                 </div>

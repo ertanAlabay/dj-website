@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from myapp.models import  MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelView, ModelWorkPacket, WorkPacket, Partner, Slide, NumberWorkPacket, Video, Podcast, Event, Gallery, People
+from myapp.models import  LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkPacket, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
 from django.conf import settings
 #from myapp.forms import ContactForm
 
@@ -8,6 +8,28 @@ from django.conf import settings
 # Anasayfa için oluşturulan yapı. 
 # Tüm tablolarla bağlantılı.
 # Sitenin özetinin gösterildiği kısım
+def custom_error_400(request, exception=None):
+    return render(request, '404.html', {
+    "navModels": ModelNavbar.objects.all(),
+  }, status=400)
+
+def custom_error_403(request, exception=None):
+    return render(request, '404.html', {
+    "navModels": ModelNavbar.objects.all(),
+  }, status=403)
+
+def custom_error_404(request, exception=None):
+    return render(request, '404.html', '404.html', {
+    "navModels": ModelNavbar.objects.all(),
+  }, status=404)
+
+def custom_error_500(request):
+    return render(request, '404.html', {
+    "navModels": ModelNavbar.objects.all(),
+  }, status=500)
+
+
+
 def index(request):
   context = {
 
@@ -19,58 +41,74 @@ def index(request):
     "viewMains": MainpageView.objects.all(),
     "videoMains": MainpageVideo.objects.all(),
     "infoMains": MainpageInfo.objects.all(),
+    "guideMains": MainpageGuidebook.objects.all(),
     "podcastMains": MainpagePodcast.objects.all(),
-    "workpacketdenemes": ModelWorkPacket.objects.all(),
+    "workpacketModels": ModelWorkPacket.objects.all(),
 
-    "partners": Partner.objects.all(),
-    "slides": Slide.objects.all(),
-    "podcasts": Podcast.objects.all(),
-    "events": Event.objects.all()[::-1],
-    "gallerys": Gallery.objects.all(),
-    "peoples": People.objects.all(),
+    
+    "youtubeLinks": LinkYoutube.objects.all(),
+    "faceLinks": LinkFacebook.objects.all(),
+    "spotifyLinks": LinkSpotify.objects.all(),
+    "instaLinks": LinkInstagram.objects.all(),
+    
+    "navModels": ModelNavbar.objects.all(),
+    "partners": ModelPartner.objects.all(),
+    "slides": MainpageSlide.objects.all(),
+    "podcasts": ModelPodcast.objects.all(),
+    "news": ModelNews.objects.all()[::-1],
+    "gallerys": ModelGallery.objects.all(),
+    "peoples": ModelView.objects.all(),
   }
 
   return render(request, "myapp/index.html", context)
 
 # Video içeriği
-def video(request):
+def videos(request):
   context = {
-    "videos": Video.objects.all()
+    "videos": ModelVideo.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/video.html", context)
 
 # Etkinlik, haber, blog yazısı için içerik
-def event(request):
+def news(request):
   context = {
-    "events": Event.objects.all()
+    "news": ModelNews.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
   }
-  return render(request, "myapp/events.html", context)
+  return render(request, "myapp/news.html", context)
 
 # Tek blog yazısının gösterilmesi için oluşturulan yapı
-def single_event(request, slug):
-  single= Event.objects.get(slug=slug)
-  return render(request, "myapp/single-event.html",{
-    'single': single
+def single_news(request, slug):
+  
+  single= ModelNews.objects.get(slug=slug)
+  return render(request, "myapp/single-news.html",{
+    'single': single,
+    "navModels": ModelNavbar.objects.all(),
   })
 
 # Podcast içeriği
-def podcast(request):
+def podcasts(request):
   context = {
-    "podcasts": Podcast.objects.all()
+    
+    "navModels": ModelNavbar.objects.all(),
+    "podcasts": ModelPodcast.objects.all()
   }
   return render(request, "myapp/podcast.html", context)
 
 # Gallery içeriği
 def gallery(request):
   context = {
-    "gallerys": Gallery.objects.all()
+    "gallerys": ModelGallery.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/gallery.html", context)
 
 # Workpacketların saklandığı yapı
 def workpackets(request):
   context = {
-    "workpacketdenemes" : ModelWorkPacket.objects.all(),
+    "workpacketModels" : ModelWorkPacket.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
     #"workpackets": WorkPacket.objects.all(),
     #"numberworkpackets": NumberWorkPacket.objects.all()
   }
@@ -79,5 +117,28 @@ def workpackets(request):
 def single_workpacket(request, slug):
   single= ModelWorkPacket.objects.get(slug=slug)
   return render(request, "myapp/single-workpacket.html",{
-    'single': single
+    'single': single,
+    "navModels": ModelNavbar.objects.all()
   })
+
+# Etkinlik, haber, blog yazısı için içerik
+def guidebooks(request):
+  context = {
+    "guidebooks": ModelGuidebook.objects.all(),
+    "navModels": ModelNavbar.objects.all(),
+  }
+  return render(request, "myapp/guidebook.html", context)
+
+# Tek blog yazısının gösterilmesi için oluşturulan yapı
+def single_guidebook(request, slug):
+  single= ModelGuidebook.objects.get(slug=slug),
+  return render(request, "myapp/single-guidebook.html",{
+    'single': single,
+    "navModels": ModelNavbar.objects.all()
+  })
+
+
+
+
+
+

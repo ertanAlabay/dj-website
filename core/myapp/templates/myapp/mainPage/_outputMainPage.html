@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- 3. Output Başlangıç -->
-<div class="ak-height-125 ak-height-lg-80" id="output"></div>
+<div class="ak-height-125 ak-height-lg-80" id="outputs"></div>
 <div class="container">
     <div class="ak-section-heading ak-style-1">
         <div class="background-text">{{ outputMain.backHeader }}</div>
@@ -21,5 +21,9 @@
         {% include "myapp/mainPage/_podcastsMainPage.html" %}
     {% endfor %}
     
+    {% for guideMain in guideMains %}
+        {% include "myapp/mainPage/_guidebookMainPage.html" %}
+    {% endfor %}
+
 </div>
 <!-- Output Bitiş -->

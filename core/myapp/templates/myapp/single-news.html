@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Blog {% endblock %}
+
+{% block content %}
+
+<!-- Sayfanın Header kısmı -->
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div class="container">
+    <div class="common-page-title">
+        <div class="d-flex gap-2 align-items-center">
+            <a href="/news">
+                <p class="page-title" style="font-size:120%;">Go to News Page</p>
+            </a>
+        </div>
+    </div>
+    <div class="primary-color-border"></div>
+</div>
+
+<!-- 
+Blog içeriğinin gösterildiği kısım
+Burada yazının başlığı, görseli, içeriği, yazarı ve yazarın ünvanı db den alınarak gösterilmektedir.
+-->
+<div class="container "><!--container-customize-->
+    <div>
+        <div class="ak-height-50 ak-height-lg-30"></div>
+        <div data-aos="fade-up">
+            <p class="desp">{{ single.description|safe }}</p>
+            <div class="ak-height-100 ak-height-lg-60"></div>
+        </div>
+
+    <!--
+        <div data-aos="fade-up">
+            <p class="desp" style="text-align: right;">{{ single.writerName }}</p>
+            <p class="desp" style="text-align: right;">{{ single.writerTitle }}</p>
+            <div class="ak-height-50 ak-height-lg-30"></div>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="700">
+            <img src={{ single.image.url }} class="img-fluid" alt="...">
+            <div class="ak-height-50 ak-height-lg-30"></div>
+        </div>
+    -->
+    </div>
+</div>
+
+<span class="ak-scrollup">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 10L1.7625 11.7625L8.75 4.7875V20H11.25V4.7875L18.225 11.775L20 10L10 0L0 10Z"
+            fill="currentColor" />
+    </svg>
+</span>
+
+{% endblock %}
