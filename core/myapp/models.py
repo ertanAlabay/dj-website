@@ -1,19 +1,12 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
-# Create your models here.
-
-# Workpacketların kategorize etmek için ilişki kullanarak oluşturduğumuz tablo
-# "Workpacket" tablosuyla "numberpacket" sütunu ilişkilendirilmiştir.  
-# Kategori kullanarak filtrelemek için iki tabloda da "slugify" kullanılmıştır.
-    
-# Workpacketların card yapısında kullanılacak db tablosu
 
 
 # Oluşturulan yazı, makale, haber, etkinlik yazıları için oluşturulan tablo yapısı
 class ModelGuidebook(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField()
+    image = models.ImageField(help_text="Image size should be '280x326'")
     file = models.FileField(upload_to="documents/workpackets/pdf")
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
 
@@ -34,7 +27,7 @@ class ModelNavbar(models.Model):
 # Ortakların isim, resim, site ve açıklama bilgilerini saklayan tablo yapısı
 class ModelPartner(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="partners/img")
+    image = models.ImageField(upload_to="partners/img", help_text="Image size should be '280x326'")
     website = models.URLField(max_length=150)
     description = RichTextField()
 
@@ -44,7 +37,7 @@ class ModelPartner(models.Model):
 # Oluşturulan yazı, makale, haber, etkinlik yazıları için oluşturulan tablo yapısı
 class ModelNews(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField()
+    image = models.ImageField(upload_to="news/img", help_text="Image size should be '420x316'")
     description = RichTextField()
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
 
@@ -58,7 +51,7 @@ class ModelNews(models.Model):
 # Anasayfada bulunan slayt yapısı için oluşturulan tablo
 class MainpageSlide(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="slides/img")
+    image = models.ImageField(upload_to="slides/img", help_text="Image size should be '1920x1080'.")
     description = models.TextField()
     
     def __str__(self):
@@ -141,7 +134,7 @@ class MainpageOutput(models.Model):
 
 class MainpageVideo(models.Model):
     title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="videos/img")
+    image = models.ImageField(upload_to="videos/img", help_text="Image size should be '1920x676'")
     URL = models.URLField(max_length=150)
 
     def __str__(self):

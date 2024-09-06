@@ -17,9 +17,11 @@ Workpacket card yapısını oluşturan kod yapısı
     <a href="{% url 'workpacket_details' workpacketModel.slug %}" class="card-title">
       {{ workpacketModel.title }}
     </a>
+    
     <p class="card-desp">
-      {{ workpacketModel.description|truncatewords:10|safe }}
+      <!--{{ workpacketModel.description|truncatewords:10|safe }}-->
     </p>
+    
     <a href="{% url 'workpacket_details' workpacketModel.slug %}" class="more-btn">VIEW</a>
   </div>
 </div>
