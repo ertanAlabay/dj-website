@@ -1,0 +1,27 @@
+{% load static %}
+
+
+<!-- 
+Workpacket card yapısını oluşturan kod yapısı
+
+-->
+<div class="service-card" data-aos="fade-left">
+  <a href="{% url 'workpackaget_details' workpacketModel.slug %}" class="card-img">
+    <img
+      src="{{ workpacketModel.image.url }}"
+      class="ak-bg"
+      alt="..."
+    />
+  </a>
+  <div class="card-info">
+    <a href="{% url 'workpackaget_details' workpacketModel.slug %}" class="card-title">
+      {{ workpacketModel.title }}
+    </a>
+    
+    <p class="card-desp">
+      <!--{{ workpacketModel.description|truncatewords:10|safe }}-->
+    </p>
+    
+    <a href="{% url 'workpackaget_details' workpacketModel.slug %}" class="more-btn">VIEW</a>
+  </div>
+</div>

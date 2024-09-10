@@ -97,7 +97,7 @@ class ModelView(models.Model):
 # Anasayfadaki video içeriği    
 
 # Oluşturulan yazı, makale, haber, etkinlik yazıları için oluşturulan tablo yapısı
-class ModelWorkPacket(models.Model):
+class ModelWorkpackage(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="workpackets/img")
     description = RichTextField()
@@ -109,9 +109,6 @@ class ModelWorkPacket(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)  
-
-
-
 
 
 
@@ -168,7 +165,7 @@ class MainpageGuidebook(models.Model):
     def __str__(self):
         return f"{self.title}" 
 
-class MainpageWorkpacket(models.Model):
+class MainpageWorkpackaget(models.Model):
     header = models.CharField(max_length=100)
     backHeader = models.CharField(max_length=100)
     descriptions = models.TextField()

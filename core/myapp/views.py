@@ -1,6 +1,9 @@
 from django.shortcuts import render
-from myapp.models import  LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkPacket, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
+from core.settings import EMAIL_HOST_USER
+from myapp.models import  LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpackaget, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkpackage, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
 from django.conf import settings
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 #from myapp.forms import ContactForm
 
 # Create your views here.
@@ -29,13 +32,47 @@ def custom_error_500(request):
   }, status=500)
 
 
-
 def index(request):
+
+  success = request.session.pop('success', False)
+  error = request.session.pop('error', False)
+
+  if request.method == 'POST':
+        name = request.POST.get('firstname')
+        email = request.POST.get('email')
+        message = request.POST.get('textarea')
+
+        if name and email and message:
+            try:
+                subject = f"New contact form submission from {name}"
+                message_body = f"Name: {name}\nEmail: {email}\n\nMessage: \n{message}"
+
+                # Mail gönderimi
+                send_mail(
+                    name,
+                    message_body,
+                    email,  # Gönderenin email adresi
+                    [EMAIL_HOST_USER],  # Alıcı email adresi
+                    fail_silently=False,
+                )
+
+                # Başarıyla gönderildikten sonra sayfaya GET isteği ile yönlendirme yapılacak
+                return HttpResponseRedirect('/')
+
+            except Exception as e:
+                error = True
+        else:
+            error = True
+    
+
+
   context = {
+    'success': success,
+    'error': error,
 
     "aboutMains": MainpageAbout.objects.all(),
     "outputMains": MainpageOutput.objects.all(),
-    "workpacketMains": MainpageWorkpacket.objects.all(),
+    "workpacketMains": MainpageWorkpackaget.objects.all(),
     "newsMains": MainpageNews.objects.all(),
     "guidebooks": ModelGuidebook.objects.all(),
     "viewMains": MainpageView.objects.all(),
@@ -43,7 +80,7 @@ def index(request):
     "infoMains": MainpageInfo.objects.all(),
     "guideMains": MainpageGuidebook.objects.all(),
     "podcastMains": MainpagePodcast.objects.all(),
-    "workpacketModels": ModelWorkPacket.objects.all(),
+    "workpacketModels": ModelWorkpackage.objects.all(),
 
     
     "youtubeLinks": LinkYoutube.objects.all(),
@@ -107,7 +144,7 @@ def gallery(request):
 # Workpacketların saklandığı yapı
 def workpackets(request):
   context = {
-    "workpacketModels" : ModelWorkPacket.objects.all(),
+    "workpacketModels" : ModelWorkpackage.objects.all(),
     "navModels": ModelNavbar.objects.all(),
     #"workpackets": WorkPacket.objects.all(),
     #"numberworkpackets": NumberWorkPacket.objects.all()
@@ -115,7 +152,7 @@ def workpackets(request):
   return render(request, "myapp/workpackets.html", context)
 
 def single_workpacket(request, slug):
-  single= ModelWorkPacket.objects.get(slug=slug)
+  single= ModelWorkpackage.objects.get(slug=slug)
   return render(request, "myapp/single-workpacket.html",{
     'single': single,
     "navModels": ModelNavbar.objects.all()

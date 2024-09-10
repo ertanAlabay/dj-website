@@ -192,30 +192,38 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
         </div>
         <div class="ak-height-25 ak-height-lg-20"></div>
         <div class="contact-form" data-aos="fade-up" data-aos-delay="750">
-            <form method="POST">
+            <form method="post" action="">
                 {% csrf_token %}
                 <div class="from-inputs ">
                     <div class="type_1">
                         <label for="fullname" class="form-label">Full Name*</label>
-                        <input type="text" name="firstname" id="fullname">
+                        <input type="text" name="firstname" id="fullname" lue="{% if not success %}{{ request.POST.firstname }}{% endif %}" required>
 
                     </div>
                     <div class="type_1">
                         <label for="emailInput" class="form-label">Email*</label>
-                        <input type="text" name="email" id="emailInput">
+                        <input type="text" name="email" id="emailInput" value="{% if not success %}{{ request.POST.email }}{% endif %}" required>
                     </div>
                 </div>
                 <div class="from-textarea">
                     <div class="type_1">
                         <label for="textareaInput" class="form-label">Your Message*</label>
-                        <textarea name="textarea" rows="5" id="textareaInput">
-        
+                        <textarea name="textarea" rows="5" id="textareaInput" required>
+                            {% if not success %}{{ request.POST.textarea }}{% endif %}
                         </textarea>
                     </div>
                 </div>
                 <div class="ak-height-40 ak-height-lg-20"></div>
                 <button type="submit" class="common-btn">SEND MESSAGE</button>
             </form>
+
+            {% if success %}
+                <p style="color: green;">Your message has been sent successfully!</p>
+            {% elif error %}
+                <p style="color: red;">There was an error sending your message. Please try again.</p>
+            {% endif %}
+
+
         </div>
     </div>
 </div>
