@@ -1,6 +1,9 @@
 from django.shortcuts import render
+from core.settings import EMAIL_HOST_USER
 from myapp.models import  LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpacket, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkPacket, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
 from django.conf import settings
+from django.core.mail import send_mail
+from django.http import HttpResponseRedirect
 #from myapp.forms import ContactForm
 
 # Create your views here.
@@ -29,9 +32,43 @@ def custom_error_500(request):
   }, status=500)
 
 
-
 def index(request):
+
+  success = request.session.pop('success', False)
+  error = request.session.pop('error', False)
+
+  if request.method == 'POST':
+        name = request.POST.get('firstname')
+        email = request.POST.get('email')
+        message = request.POST.get('textarea')
+
+        if name and email and message:
+            try:
+                subject = f"New contact form submission from {name}"
+                message_body = f"Name: {name}\nEmail: {email}\n\nMessage: \n{message}"
+
+                # Mail gönderimi
+                send_mail(
+                    name,
+                    message_body,
+                    email,  # Gönderenin email adresi
+                    [EMAIL_HOST_USER],  # Alıcı email adresi
+                    fail_silently=False,
+                )
+
+                # Başarıyla gönderildikten sonra sayfaya GET isteği ile yönlendirme yapılacak
+                return HttpResponseRedirect('/')
+
+            except Exception as e:
+                error = True
+        else:
+            error = True
+    
+
+
   context = {
+    'success': success,
+    'error': error,
 
     "aboutMains": MainpageAbout.objects.all(),
     "outputMains": MainpageOutput.objects.all(),
