@@ -29,7 +29,7 @@ class ModelPartner(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="partners/img", help_text="Image size should be '280x326'")
     website = models.URLField(max_length=150)
-    description = RichTextField()
+    description = RichTextField(config_name='custom')
 
     def __str__(self):
         return self.title
@@ -38,7 +38,7 @@ class ModelPartner(models.Model):
 class ModelNews(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="news/img", help_text="Image size should be '420x316'")
-    description = RichTextField()
+    description = RichTextField(config_name='custom')
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
 
     def __str__(self):
@@ -100,7 +100,7 @@ class ModelView(models.Model):
 class ModelWorkpackage(models.Model):
     title = models.CharField(max_length=100)
     image = models.ImageField(upload_to="workpackets/img")
-    description = RichTextField()
+    description = RichTextField(config_name='custom')
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
 
     def __str__(self):
@@ -165,7 +165,7 @@ class MainpageGuidebook(models.Model):
     def __str__(self):
         return f"{self.title}" 
 
-class MainpageWorkpackaget(models.Model):
+class MainpageWorkpackage(models.Model):
     header = models.CharField(max_length=100)
     backHeader = models.CharField(max_length=100)
     descriptions = models.TextField()
