@@ -64,6 +64,14 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
             {% include "myapp/links/_facebook.html" %}
         {% endfor %}
 
+        {% for telegramLink in telegramLinks %}
+            {% include "myapp/links/_telegram.html" %}
+        {% endfor %}
+
+        {% for discordLink in discordLinks %}
+            {% include "myapp/links/_discord.html" %}
+        {% endfor %}
+
         <div class="social-horizontal"></div>
         <h6 class="social-link">FOLLOW US</h6>
     </div>

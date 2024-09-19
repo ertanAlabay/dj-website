@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from core.settings import EMAIL_HOST_USER
-from myapp.models import  LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpackage, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkpackage, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
+from myapp.models import  LinkDiscord, LinkTelegram, LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpackage, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkpackage, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
 from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -87,7 +87,9 @@ def index(request):
     "faceLinks": LinkFacebook.objects.all(),
     "spotifyLinks": LinkSpotify.objects.all(),
     "instaLinks": LinkInstagram.objects.all(),
-    
+    "telegramLinks": LinkTelegram.objects.all(),
+    "discordLinks": LinkDiscord.objects.all(),
+
     "navModels": ModelNavbar.objects.all(),
     "partners": ModelPartner.objects.all(),
     "slides": MainpageSlide.objects.all(),

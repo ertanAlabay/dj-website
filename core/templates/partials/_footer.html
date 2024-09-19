@@ -7,9 +7,18 @@
         <div class="ak-height-35 ak-height-lg-15"></div>
         <div class="primary-color-border"></div>
         <div class="copy-right">
+            <img src="{% static 'img/footer.png' %}" style="padding:40px;">
             <p class="title  text-hover-animaiton">Copyright 2024, All Right reserved</p>
             <div class="social-icon">
                 
+                {% for discordLink in discordLinks %}
+                    {% include "myapp/links/_discord.html" %}
+                {% endfor %}
+
+                {% for telegramLink in telegramLinks %}
+                    {% include "myapp/links/_telegram.html" %}
+                {% endfor %}
+
                 {% for youtubeLink in youtubeLinks %}
                     {% include "myapp/links/_youtube.html" %}
                 {% endfor %}

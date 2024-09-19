@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import LinkFacebook, LinkInstagram, MainpageAbout, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpackage, ModelGuidebook, ModelNavbar, ModelWorkpackage, LinkSpotify, ModelPartner, MainpageSlide, ModelNews, ModelVideo, ModelPodcast, ModelGallery, ModelView, LinkYoutube
+from .models import LinkDiscord, LinkTelegram, LinkFacebook, LinkInstagram, MainpageAbout, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpackage, ModelGuidebook, ModelNavbar, ModelWorkpackage, LinkSpotify, ModelPartner, MainpageSlide, ModelNews, ModelVideo, ModelPodcast, ModelGallery, ModelView, LinkYoutube
 
 # Register your models here.
 
@@ -34,6 +34,8 @@ admin.site.register(LinkYoutube)
 admin.site.register(LinkSpotify)
 admin.site.register(LinkFacebook)
 admin.site.register(LinkInstagram)
+admin.site.register(LinkTelegram)
+admin.site.register(LinkDiscord)
 
 # Main page eklenen içerikler
 admin.site.register(ModelPartner)

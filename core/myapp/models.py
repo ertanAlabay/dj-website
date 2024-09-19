@@ -215,3 +215,16 @@ class LinkInstagram(models.Model):
 
     def __str__(self):
         return f"{self.URL}"
+    
+
+class LinkTelegram(models.Model):
+    URL = models.URLField(max_length=150)
+
+    def __str__(self):
+        return f"{self.URL}"
+
+class LinkDiscord(models.Model):
+    URL = models.URLField(max_length=150)
+
+    def __str__(self):
+        return f"{self.URL}"
