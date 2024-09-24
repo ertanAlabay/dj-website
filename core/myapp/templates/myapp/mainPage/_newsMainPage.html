@@ -20,7 +20,8 @@
     <div class="ak-height-50 ak-height-lg-50"></div>
     <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 g-5 g-lg-4">
         <!-- Event sayfasından 3 adet öge anasayfada gösterilmektedir. -->
-        {% for newss in news|slice:":3" %}
+        {% comment "" %} newss {% endcomment %}
+        {% for news_item in news|slice:":3" %}
             {% include "myapp/partials/_newsCard.html" %}
         {% endfor %} 
     </div>

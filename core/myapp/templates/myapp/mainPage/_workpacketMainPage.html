@@ -7,7 +7,8 @@
         <div class="content style_2">
             <div class="service">
                 <!-- Tüm Workpacketlar anasayfada gösterilmektedir. -->
-                {% for workpacketModel in workpacketModels %}
+                 {% comment "" %}workpackage , workpackages{% endcomment %}
+                {% for workpackage  in workpackages %}
                     {% include "myapp/partials/_workpackets.html" %}
                 {% endfor %}
             </div>

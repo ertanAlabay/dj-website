@@ -6,22 +6,22 @@ Workpacket card yapısını oluşturan kod yapısı
 
 -->
 <div class="service-card" data-aos="fade-left">
-  <a href="{% url 'workpacket_details' workpacketModel.slug %}" class="card-img">
+  <a href="{% url 'workpacket_details' workpackage.slug %}" class="card-img">
     <img
-      src="{{ workpacketModel.image.url }}"
+      src="{{ workpackage.image.url }}"
       class="ak-bg"
       alt="..."
     />
   </a>
   <div class="card-info">
-    <a href="{% url 'workpacket_details' workpacketModel.slug %}" class="card-title">
-      {{ workpacketModel.title }}
+    <a href="{% url 'workpacket_details' workpackage.slug %}" class="card-title">
+      {{ workpackage.title }}
     </a>
     
     <p class="card-desp">
       <!--{{ workpacketModel.description|truncatewords:10|safe }}-->
     </p>
     
-    <a href="{% url 'workpacket_details' workpacketModel.slug %}" class="more-btn">VIEW</a>
+    <a href="{% url 'workpacket_details' workpackage.slug %}" class="more-btn">VIEW</a>
   </div>
 </div>

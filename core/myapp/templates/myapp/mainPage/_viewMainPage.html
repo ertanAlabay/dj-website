@@ -25,7 +25,12 @@
         <div class="ak-slider ak-slider-testimonal">
             <div class="swiper-wrapper">
                 <!-- Yorumların gösterildiği kısım -->
+                {% comment "" %}
                 {% for people in peoples %}
+                    {% include "myapp/partials/_people.html" %}
+                {% endfor %}
+                {% endcomment %}
+                {% for review  in reviews %}
                     {% include "myapp/partials/_people.html" %}
                 {% endfor %}
             </div>

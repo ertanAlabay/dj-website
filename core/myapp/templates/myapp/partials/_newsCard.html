@@ -5,17 +5,17 @@
 <div class="col">
   <div class="h-100">
     <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
-      <a href="{% url 'news_details' newss.slug %}">
+      <a href="{% url 'news_details' news_item.slug %}">
         <div class="blog-header-info">
-          <img src="{{ newss.image.url }}" alt="..." />
+          <img src="{{ news_item.image.url }}" alt="..." />
         </div>
       </a>
       <div class="blog-body-info">
-        <p class="blog-text">{{ newss.title }}</p>
-        <a href="{% url 'news_details' newss.slug %}" class="blog-title"></a>
+        <p class="blog-text">{{ news_item.title }}</p>
+        <a href="{% url 'news_details' news_item.slug %}" class="blog-title"></a>
       </div>
       <div class="blog-footer-info">
-        <a href="{% url 'news_details' newss.slug %}" class="more-btn">READ</a>
+        <a href="{% url 'news_details' news_item.slug %}" class="more-btn">READ</a>
       </div>
     </div>
   </div>

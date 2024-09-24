@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from core.settings import EMAIL_HOST_USER
-from myapp.models import Slide, MainpageOutputContent, MainpageSection, ModelGuidebook, ModelNavbar, ModelWorkpackage, ModelPartner, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, SocialMediaLink
+from myapp.models import ModelContent, ModelEntity, Slide, MainpageOutputContent, MainpageSection, ModelNavbar, SocialMediaLink
 from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -64,11 +64,34 @@ def index(request):
         else:
             error = True
     
+  # İçerikleri çekiyoruz
+  videos = ModelContent.objects.filter(content_type='video')  # Video içeriklerini çekiyoruz
+  news = ModelContent.objects.filter(content_type='news')    # Haber içeriklerini çekiyoruz
+  galleries = ModelContent.objects.filter(content_type='gallery')  # Galeri içeriklerini çekiyoruz
+  podcasts = ModelContent.objects.filter(content_type='podcast')  # Podcast içeriklerini çekiyoruz
+  workpackages = ModelContent.objects.filter(content_type='workpackage')  # Workpackage içerikleri
+  guidebooks = ModelContent.objects.filter(content_type='guidebook')  # Guidebook içerikleri
+
+  # Ortaklar ve yorumlar
+  partners = ModelEntity.objects.filter(entity_type='partner')  # Partnerleri çekiyoruz
+  reviews = ModelEntity.objects.filter(entity_type='view')  # Yorumları çekiyoruz
+
+  # Verileri şablona gönderiyoruz
+    
 
 
   context = {
     'success': success,
     'error': error,
+
+    'videos': videos,
+    'news': news,
+    'galleries': galleries,
+    'podcasts': podcasts,
+    'workpackages': workpackages,
+    'partners': partners,
+    'reviews': reviews,
+    'guidebooks': guidebooks,
 
     "socialMediaLinks": SocialMediaLink.objects.all(),
     'about_sections': MainpageSection.objects.filter(section_type='about'),
@@ -80,15 +103,8 @@ def index(request):
     'outputContents': MainpageOutputContent.objects.all(),
     'slides': Slide.objects.all(),
 
-    "guidebooks": ModelGuidebook.objects.all(),
-    "workpacketModels": ModelWorkpackage.objects.all(),
-
-    "navModels": ModelNavbar.objects.all(),
-    "partners": ModelPartner.objects.all(),
-    "podcasts": ModelPodcast.objects.all(),
-    "news": ModelNews.objects.all()[::-1],
-    "gallerys": ModelGallery.objects.all(),
-    "peoples": ModelView.objects.all(),
+    
+    
   }
 
   return render(request, "myapp/index.html", context)
@@ -96,7 +112,7 @@ def index(request):
 # Video içeriği
 def videos(request):
   context = {
-    "videos": ModelVideo.objects.all(),
+    "videos": ModelContent.objects.filter(content_type='video'),
     "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/video.html", context)
@@ -104,7 +120,7 @@ def videos(request):
 # Etkinlik, haber, blog yazısı için içerik
 def news(request):
   context = {
-    "news": ModelNews.objects.all(),
+    "news": ModelContent.objects.filter(content_type='news'),
     "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/news.html", context)
@@ -112,7 +128,7 @@ def news(request):
 # Tek blog yazısının gösterilmesi için oluşturulan yapı
 def single_news(request, slug):
   
-  single= ModelNews.objects.get(slug=slug)
+  single= ModelContent.objects.filter(content_type='news').get(slug=slug)
   return render(request, "myapp/single-news.html",{
     'single': single,
     "navModels": ModelNavbar.objects.all(),
@@ -123,14 +139,14 @@ def podcasts(request):
   context = {
     
     "navModels": ModelNavbar.objects.all(),
-    "podcasts": ModelPodcast.objects.all()
+    "podcasts": ModelContent.objects.filter(content_type='podcast')
   }
   return render(request, "myapp/podcast.html", context)
 
 # Gallery içeriği
 def gallery(request):
   context = {
-    "gallerys": ModelGallery.objects.all(),
+    "galleries": ModelContent.objects.filter(content_type='gallery'),
     "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/gallery.html", context)
@@ -138,7 +154,7 @@ def gallery(request):
 # Workpacketların saklandığı yapı
 def workpackets(request):
   context = {
-    "workpacketModels" : ModelWorkpackage.objects.all(),
+    "workpackages" : ModelContent.objects.filter(content_type='workpackage'),
     "navModels": ModelNavbar.objects.all(),
     #"workpackets": WorkPacket.objects.all(),
     #"numberworkpackets": NumberWorkPacket.objects.all()
@@ -146,7 +162,7 @@ def workpackets(request):
   return render(request, "myapp/workpackets.html", context)
 
 def single_workpacket(request, slug):
-  single= ModelWorkpackage.objects.get(slug=slug)
+  single= ModelContent.objects.filter(content_type='workpackage').get(slug=slug)
   return render(request, "myapp/single-workpacket.html",{
     'single': single,
     "navModels": ModelNavbar.objects.all()
@@ -155,14 +171,14 @@ def single_workpacket(request, slug):
 # Etkinlik, haber, blog yazısı için içerik
 def guidebooks(request):
   context = {
-    "guidebooks": ModelGuidebook.objects.all(),
+    "guidebooks": ModelContent.objects.filter(content_type='guidebook'),
     "navModels": ModelNavbar.objects.all(),
   }
   return render(request, "myapp/guidebook.html", context)
 
 # Tek blog yazısının gösterilmesi için oluşturulan yapı
 def single_guidebook(request, slug):
-  single= ModelGuidebook.objects.get(slug=slug),
+  single= ModelContent.objects.filter(content_type='guidebook').get(slug=slug),
   return render(request, "myapp/single-guidebook.html",{
     'single': single,
     "navModels": ModelNavbar.objects.all()
