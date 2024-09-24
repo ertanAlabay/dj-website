@@ -48,14 +48,7 @@ class ModelNews(models.Model):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-# Anasayfada bulunan slayt yapısı için oluşturulan tablo
-class MainpageSlide(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="slides/img", help_text="Image size should be '1920x1080'.")
-    description = models.TextField()
-    
-    def __str__(self):
-        return f"{self.title}"
+
     
 # Videolar için oluşturulan tablo yapısı
 class ModelVideo(models.Model):
@@ -112,106 +105,63 @@ class ModelWorkpackage(models.Model):
 
 
 
-class MainpageAbout(models.Model):
+# Anasayfada bulunan slayt yapısı için oluşturulan tablo
+class Slide(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="slides/img", help_text="Image size should be '1920x1080'.")
+    description = models.TextField()
+    
+    def __str__(self):
+        return f"{self.title}"
+    
+
+
+class MainpageOutputContent(models.Model):
+    CONTENT_TYPE_CHOICES = [
+        ('video', 'Video'),
+        ('info', 'Info'),
+        ('podcast', 'Podcast'),
+        ('guidebook', 'Guidebook'),
+    ]
+    content_type = models.CharField(max_length=50, choices=CONTENT_TYPE_CHOICES)
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="videos/img", blank=True, null=True, help_text="NOTE: Image just needs for video and size should be '1920x1080'.")  # Sadece video için gerekli
+    URL = models.URLField(max_length=150, blank=True, null=True, help_text="NOTE: URL just needs for video.")  # Sadece video için gerekli
+    
+    def __str__(self):
+        return f"{self.content_type}: {self.title}"
+    
+
+class MainpageSection(models.Model):
+    SECTION_CHOICES = [
+        ('about', 'About Section'),
+        ('output', 'Output Section'),
+        ('workpackage', 'Workpackage Section'),
+        ('news', 'News Section'),
+        ('view', 'View Section'),
+        # Diğer bölümler burada eklenebilir...
+    ]
+    section_type = models.CharField(max_length=20, choices=SECTION_CHOICES)
     header = models.CharField(max_length=100)
     backHeader = models.CharField(max_length=100)
     descriptions = models.TextField()
 
     def __str__(self):
-        return f"{self.header}"
-    
-class MainpageOutput(models.Model):
-    header = models.CharField(max_length=100)
-    backHeader = models.CharField(max_length=100)
-    descriptions = models.TextField()
+        return f"{self.section_type}: {self.header}"
 
-    def __str__(self):
-        return f"{self.header}"
-    
 
-class MainpageVideo(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="videos/img", help_text="Image size should be '1920x676'")
+class SocialMediaLink(models.Model):
+    PLATFORM_CHOICES = [
+        ('youtube', 'YouTube'),
+        ('facebook', 'Facebook'),
+        ('spotify', 'Spotify'),
+        ('instagram', 'Instagram'),
+        ('telegram', 'Telegram'),
+        ('discord', 'Discord'),
+    ]
+
+    platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
     URL = models.URLField(max_length=150)
 
     def __str__(self):
-        return f"{self.title}"    
-    
-
-class MainpageVideo(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to="videos/img")
-    URL = models.URLField(max_length=150)
-
-    def __str__(self):
-        return f"{self.title}" 
-
-
-class MainpageInfo(models.Model):
-    title = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return f"{self.title}" 
-
-class MainpagePodcast(models.Model):
-    title = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return f"{self.title}" 
-
-class MainpageGuidebook(models.Model):
-    title = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return f"{self.title}" 
-
-class MainpageWorkpackage(models.Model):
-    header = models.CharField(max_length=100)
-    backHeader = models.CharField(max_length=100)
-    descriptions = models.TextField()
-
-    def __str__(self):
-        return f"{self.header}"
-    
-
-class MainpageNews(models.Model):
-    header = models.CharField(max_length=100)
-    backHeader = models.CharField(max_length=100)
-    descriptions = models.TextField()
-
-    def __str__(self):
-        return f"{self.header}"
-    
-
-class MainpageView(models.Model):
-    header = models.CharField(max_length=100)
-    backHeader = models.CharField(max_length=100)
-    descriptions = models.TextField()
-
-    def __str__(self):
-        return f"{self.header}"
-
-
-class LinkYoutube(models.Model):
-    URL = models.URLField(max_length=150)
-
-    def __str__(self):
-        return f"{self.URL}"
-
-class LinkFacebook(models.Model):
-    URL = models.URLField(max_length=150)
-
-    def __str__(self):
-        return f"{self.URL}"
-
-class LinkSpotify(models.Model):
-    URL = models.URLField(max_length=150)
-
-    def __str__(self):
-        return f"{self.URL}"
-    
-class LinkInstagram(models.Model):
-    URL = models.URLField(max_length=150)
-
-    def __str__(self):
-        return f"{self.URL}"
+        return f"{self.get_platform_display()} - {self.URL}"

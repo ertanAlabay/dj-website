@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import LinkFacebook, LinkInstagram, MainpageAbout, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpackage, ModelGuidebook, ModelNavbar, ModelWorkpackage, LinkSpotify, ModelPartner, MainpageSlide, ModelNews, ModelVideo, ModelPodcast, ModelGallery, ModelView, LinkYoutube
+from .models import Slide, MainpageOutputContent, MainpageSection, ModelGuidebook, ModelNavbar, ModelWorkpackage, ModelPartner, ModelNews, ModelVideo, ModelPodcast, ModelGallery, ModelView, SocialMediaLink
 
 # Register your models here.
 
@@ -17,23 +17,13 @@ class SiteAdmin(admin.ModelAdmin):
 
 admin.site.register(ModelNavbar)
 
-# Main page eklenen içerikler
-admin.site.register(MainpageAbout)
-admin.site.register(MainpageOutput)
-admin.site.register(MainpageWorkpackage)
-admin.site.register(MainpageNews)
-admin.site.register(MainpageView)
-admin.site.register(MainpageVideo)
-admin.site.register(MainpageInfo)
-admin.site.register(MainpagePodcast)
-admin.site.register(MainpageGuidebook)
-admin.site.register(MainpageSlide)
-
 #Sosyal medya linkleri
-admin.site.register(LinkYoutube)
-admin.site.register(LinkSpotify)
-admin.site.register(LinkFacebook)
-admin.site.register(LinkInstagram)
+admin.site.register(SocialMediaLink)
+
+# Main page eklenen içerikler
+admin.site.register(MainpageSection)
+admin.site.register(MainpageOutputContent)
+admin.site.register(Slide)
 
 # Main page eklenen içerikler
 admin.site.register(ModelPartner)

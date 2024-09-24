@@ -3,11 +3,11 @@
 <!-- Video Popup Başlangıç-->
 <div class="ak-height-125 ak-height-lg-80"></div>
 <div>
-    <h4>Video</h4>
+    <h4>{{ content.title }}</h4>
     <div class="video-home"><!--"https://www.youtube.com/watch?v=VcaAVWtP48A"-->
-        <a href={{ videoMain.URL }}
+        <a href={{ content.URL }}
             class="ak-video-block ak-style1 ak-video-open ak-bg ak-parallax_bg imagesZoom"
-            data-src="{{videoMain.image.url}}" data-aos="zoom-out-down" data-aos-duration="1000"
+            data-src="{{content.image.url}}" data-aos="zoom-out-down" data-aos-duration="1000"
             data-aos-delay="200">
             <span class="ak-heartbeat-btn">
                 <span></span>

@@ -10,9 +10,11 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
 <section class="ak-slider ak-slider-hero-1" id="home">
     <div class="swiper-wrapper">
         <!-- _slider.html sayfasında oluşturulan slayt içerikleri for döngüsü ile yazdırılmaktadır.-->
+        
         {% for slide in slides %}
             {% include "myapp/partials/_slider.html" %}
         {% endfor %}
+        
     </div>
     <div class="ak-swiper-controll-hero-1">
         <div class="ak-swiper-navigation-wrap">
@@ -48,20 +50,20 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
         <div class="hero-swiper-pagination"></div>
     </div>
     <div class="social-hero">
-        {% for youtubeLink in youtubeLinks %}
-            {% include "myapp/links/_youtube.html" %}
-        {% endfor %}
-
-        {% for instaLink in instaLinks %}
-            {% include "myapp/links/_instagram.html" %}
-        {% endfor %}
-        
-        {% for spotifyLink in spotifyLinks %}
-            {% include "myapp/links/_spotify.html" %}
-        {% endfor %}
-
-        {% for faceLink in faceLinks %}
-            {% include "myapp/links/_facebook.html" %}
+        {% for socialMedia in socialMediaLinks %}
+            {% if socialMedia.platform == 'youtube' %}
+                {% include "myapp/links/_youtube.html" %}
+            {% elif socialMedia.platform == 'instagram' %}
+                {% include "myapp/links/_instagram.html" %}
+            {% elif socialMedia.platform == 'spotify' %}
+                {% include "myapp/links/_spotify.html" %}
+            {% elif socialMedia.platform == 'facebook' %}
+                {% include "myapp/links/_facebook.html" %}
+            {% elif socialMedia.platform == 'telegram' %}
+                {% include "myapp/links/_telegram.html" %}
+            {% elif socialMedia.platform == 'discord' %}
+                {% include "myapp/links/_discord.html" %}
+            {% endif %}
         {% endfor %}
 
         <div class="social-horizontal"></div>
@@ -69,21 +71,39 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
     </div>
 </section>
 <!-- Slider bitiş -->
-{% for aboutMain in aboutMains %}
-    {% include "myapp/mainPage/_aboutMainPage.html" %}
-{% endfor %}
 
-{% for outputMain in outputMains %}
-    {% include "myapp/mainPage/_outputMainPage.html" %}
-{% endfor %}
+{% if about_sections %}
+    <div class="about-section">
+        {% for section  in about_sections  %}
+            {% include "myapp/mainPage/_aboutMainPage.html" %}
+        {% endfor %}
+    </div>
+{% endif %}
 
-{% for workpacketMain in workpacketMains %}
-    {% include "myapp/mainPage/_workpacketMainPage.html" %}
-{% endfor %}
+{% if output_sections %}
+    <div class="output-section">
+        {% for section  in output_sections  %}
+            {% include "myapp/mainPage/_outputMainPage.html" %}
+        {% endfor %}
+    </div>
+{% endif %}
 
-{% for newsMain in newsMains %}
-    {% include "myapp/mainPage/_newsMainPage.html" %}
-{% endfor %}
+{% if workpackage_sections %}
+    <div class="workpackage-section">
+        {% for section  in workpackage_sections  %}
+            {% include "myapp/mainPage/_workpacketMainPage.html" %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+{% if news_sections %}
+    <div class="news-section">
+        {% for section  in news_sections  %}
+            {% include "myapp/mainPage/_newsMainPage.html" %}    
+        {% endfor %}
+    </div>
+{% endif %}
+  
   
 <!-- 7. Partner Başlangıç -->
 <div class="ak-height-190 ak-height-lg-80" id="partners"></div>    
@@ -178,9 +198,13 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
 {% endfor %}
 <!-- Partner Bitiş -->            
 
-{% for viewMain in viewMains %}
-    {% include "myapp/mainPage/_viewMainPage.html" %}
-{% endfor %}
+{% if view_sections %}
+    <div class="view-section">
+        {% for section  in view_sections  %}
+                {% include "myapp/mainPage/_viewMainPage.html" %}
+        {% endfor %}
+    </div>
+{% endif %}
 
 <!-- 9. İletişim Başlangıç -->
 <div class="ak-height-125 ak-height-lg-80"></div>

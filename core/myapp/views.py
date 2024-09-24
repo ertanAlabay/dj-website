@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from core.settings import EMAIL_HOST_USER
-from myapp.models import  LinkFacebook, LinkInstagram, MainpageGuidebook, MainpageInfo, MainpageNews, MainpageOutput, MainpagePodcast, MainpageVideo, MainpageView, MainpageWorkpackage, ModelGuidebook, MainpageAbout, ModelNavbar, ModelWorkpackage, LinkSpotify, ModelPartner, MainpageSlide, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, LinkYoutube
+from myapp.models import Slide, MainpageOutputContent, MainpageSection, ModelGuidebook, ModelNavbar, ModelWorkpackage, ModelPartner, ModelVideo, ModelPodcast, ModelNews, ModelGallery, ModelView, SocialMediaLink
 from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -70,27 +70,21 @@ def index(request):
     'success': success,
     'error': error,
 
-    "aboutMains": MainpageAbout.objects.all(),
-    "outputMains": MainpageOutput.objects.all(),
-    "workpacketMains": MainpageWorkpackage.objects.all(),
-    "newsMains": MainpageNews.objects.all(),
+    "socialMediaLinks": SocialMediaLink.objects.all(),
+    'about_sections': MainpageSection.objects.filter(section_type='about'),
+    'output_sections': MainpageSection.objects.filter(section_type='output'),
+    'workpackage_sections': MainpageSection.objects.filter(section_type='workpackage'),
+    'news_sections': MainpageSection.objects.filter(section_type='news'),
+    'view_sections': MainpageSection.objects.filter(section_type='view'),
+
+    'outputContents': MainpageOutputContent.objects.all(),
+    'slides': Slide.objects.all(),
+
     "guidebooks": ModelGuidebook.objects.all(),
-    "viewMains": MainpageView.objects.all(),
-    "videoMains": MainpageVideo.objects.all(),
-    "infoMains": MainpageInfo.objects.all(),
-    "guideMains": MainpageGuidebook.objects.all(),
-    "podcastMains": MainpagePodcast.objects.all(),
     "workpacketModels": ModelWorkpackage.objects.all(),
 
-    
-    "youtubeLinks": LinkYoutube.objects.all(),
-    "faceLinks": LinkFacebook.objects.all(),
-    "spotifyLinks": LinkSpotify.objects.all(),
-    "instaLinks": LinkInstagram.objects.all(),
-    
     "navModels": ModelNavbar.objects.all(),
     "partners": ModelPartner.objects.all(),
-    "slides": MainpageSlide.objects.all(),
     "podcasts": ModelPodcast.objects.all(),
     "news": ModelNews.objects.all()[::-1],
     "gallerys": ModelGallery.objects.all(),

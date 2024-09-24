@@ -4,25 +4,21 @@
 <div class="ak-height-125 ak-height-lg-80" id="outputs"></div>
 <div class="container">
     <div class="ak-section-heading ak-style-1">
-        <div class="background-text">{{ outputMain.backHeader }}</div>
-        <h2 class="ak-section-title">{{ outputMain.header }}</h2>
-        <p class="ak-section-subtitle">{{ outputMain.descriptions }}</p>
+        <div class="background-text">{{ section.backHeader }}</div>
+        <h2 class="ak-section-title">{{ section.header }}</h2>
+        <p class="ak-section-subtitle">{{ section.descriptions }}</p>
     </div>
 
-    {% for videoMain in videoMains %}
-        {% include "myapp/mainPage/_videoMainPage.html" %}
-    {% endfor %}
-    
-    {% for infoMain in infoMains %}
-        {% include "myapp/mainPage/_galleryMainPage.html" %}
-    {% endfor %}
-
-    {% for podcastMain in podcastMains %}
-        {% include "myapp/mainPage/_podcastsMainPage.html" %}
-    {% endfor %}
-    
-    {% for guideMain in guideMains %}
-        {% include "myapp/mainPage/_guidebookMainPage.html" %}
+    {% for content in outputContents %}
+        {% if content.content_type == 'video' %}
+            {% include "myapp/mainPage/_videoMainPage.html" %}
+        {% elif content.content_type == 'info' %}
+            {% include "myapp/mainPage/_galleryMainPage.html" %}
+        {% elif content.content_type == 'podcast' %}
+            {% include "myapp/mainPage/_podcastsMainPage.html" %}
+        {% elif content.content_type == 'guidebook' %}
+            {% include "myapp/mainPage/_guidebookMainPage.html" %}
+        {% endif %}
     {% endfor %}
 
 </div>

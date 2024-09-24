@@ -10,21 +10,22 @@
             <p class="title  text-hover-animaiton">Copyright 2024, All Right reserved</p>
             <div class="social-icon">
                 
-                {% for youtubeLink in youtubeLinks %}
-                    {% include "myapp/links/_youtube.html" %}
-                {% endfor %}
-
-                {% for instaLink in instaLinks %}
-                    {% include "myapp/links/_instagram.html" %}
+                {% for socialMedia in socialMediaLinks %}
+                    {% if socialMedia.platform == 'youtube' %}
+                        {% include "myapp/links/_youtube.html" %}
+                    {% elif socialMedia.platform == 'instagram' %}
+                        {% include "myapp/links/_instagram.html" %}
+                    {% elif socialMedia.platform == 'spotify' %}
+                        {% include "myapp/links/_spotify.html" %}
+                    {% elif socialMedia.platform == 'facebook' %}
+                        {% include "myapp/links/_facebook.html" %}
+                    {% elif socialMedia.platform == 'telegram' %}
+                        {% include "myapp/links/_telegram.html" %}
+                    {% elif socialMedia.platform == 'discord' %}
+                        {% include "myapp/links/_discord.html" %}
+                    {% endif %}
                 {% endfor %}
                 
-                {% for spotifyLink in spotifyLinks %}
-                    {% include "myapp/links/_spotify.html" %}
-                {% endfor %}
-
-                {% for faceLink in faceLinks %}
-                    {% include "myapp/links/_facebook.html" %}
-                {% endfor %}
             </div>
         </div>
     </div>
