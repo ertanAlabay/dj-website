@@ -3,7 +3,7 @@ from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 
 
-class ModelNavbar(models.Model):
+class Navbar(models.Model):
     title = models.CharField(max_length=100, help_text="Please just enter one of these words and follow this order: 'home, about, outputs, workpackages, news, partners, views, contact'.")
        
     def __str__(self):
@@ -21,7 +21,7 @@ class Slide(models.Model):
         return f"{self.title}"
     
 
-class ModelContent(models.Model):
+class Content(models.Model):
     CONTENT_TYPE_CHOICES = [
         ('news', 'News'),
         ('podcast', 'Podcast'),
@@ -40,26 +40,27 @@ class ModelContent(models.Model):
     slug = models.SlugField(null=False, blank=True, unique=True, db_index=True)
     
     def __str__(self):
-        return f"{self.title} ({self.get_content_type_display()})"
+        return f"{self.get_content_type_display()} / {self.title}"
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
-class ModelEntity(models.Model):
+class PartnerAndView(models.Model):
     ENTITY_TYPE_CHOICES = [
         ('partner', 'Partner'),
         ('view', 'View'),  # Review or Testimonial
     ]
 
     entity_type = models.CharField(max_length=20, choices=ENTITY_TYPE_CHOICES)  # Type of entity (partner or view)
-    title = models.CharField(max_length=100)  # Partner's name or reviewer's name
+    fullname = models.CharField(max_length=100, help_text="NOTE: Partners and Viewers name.")
+    title = models.CharField(max_length=100, null=True, blank=True, help_text="NOTE: Just for the viws.")  # Partner's name or reviewer's name
     image = models.ImageField(upload_to="entity/img")
     website = models.URLField(max_length=150, null=True, blank=True, help_text="NOTE: website just needs for partners.")  # For partners
     description = models.TextField(null=True, blank=True)  # Description for partner or review
     
     def __str__(self):
-        return f"{self.title} ({self.get_entity_type_display()})"
+        return f"{self.get_entity_type_display()} / {self.fullname}"
     
 
 
@@ -77,7 +78,7 @@ class MainpageOutputContent(models.Model):
     URL = models.URLField(max_length=150, blank=True, null=True, help_text="NOTE: URL just needs for video.")  # Sadece video için gerekli
     
     def __str__(self):
-        return f"{self.content_type}: {self.title}"
+        return f"{self.content_type} / {self.title}"
     
 
 class MainpageSection(models.Model):
@@ -95,7 +96,7 @@ class MainpageSection(models.Model):
     descriptions = models.TextField()
 
     def __str__(self):
-        return f"{self.section_type}: {self.header}"
+        return f"{self.section_type} / {self.header}"
 
 
 class SocialMediaLink(models.Model):
@@ -112,4 +113,4 @@ class SocialMediaLink(models.Model):
     URL = models.URLField(max_length=150)
 
     def __str__(self):
-        return f"{self.get_platform_display()} - {self.URL}"
+        return f"{self.get_platform_display()} / {self.URL}"

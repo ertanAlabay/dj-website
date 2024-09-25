@@ -130,7 +130,7 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
                             <div class="team-style-1">
                                 <div class="team-info">
                                     <div class="team-title">
-                                        <p class="desp">{{partner.title}}</p>
+                                        <p class="desp">{{partner.fullname}}</p>
                                     </div>
                                     <div class="team-info-social" >
                                         <a href="{{partner.website}}" target="_blank" class="icon" style="display: flex; justify-content: center; align-items: center;">
@@ -164,8 +164,7 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
                                                 -570 -769 -736 -87 -46 -284 -129 -306 -129 -6 0 8 37 31 83 130 256 230 577
                                                 284 910 l6 37 420 0 419 0 -15 -35z"/>
                                                 </g>
-                                                </svg>
-
+                                            </svg>
                                         </a>
                                     </div>
                                 </div>
@@ -221,7 +220,7 @@ içeriklerin genel bir özeti bulunmaktadır. Butonlarla sayfa içeriklerine ula
                 <div class="from-inputs ">
                     <div class="type_1">
                         <label for="fullname" class="form-label">Full Name*</label>
-                        <input type="text" name="firstname" id="fullname" lue="{% if not success %}{{ request.POST.firstname }}{% endif %}" required>
+                        <input type="text" name="firstname" id="fullname" value="{% if not success %}{{ request.POST.firstname }}{% endif %}" required>
 
                     </div>
                     <div class="type_1">

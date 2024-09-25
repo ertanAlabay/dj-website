@@ -30,9 +30,9 @@ single-event.html sayfasına yönlendirmektedir.
     </svg>
       </div>        
       <div class="service-desp">
-      <a href="#" class="title">{{ guidebook.title }}</a>
+      <a href="{{ guidebook.file.url }}" class="title" download>{{ guidebook.title }}</a>
       <p class="desp">{{ guidebook.description }}</p>
-      <a href="{{ guidebook.file.url }}" class="more-btn" download>Dowload</a>
+      <a href="{{ guidebook.file.url }}" class="more-btn" download>Download</a>
       </div>
   </div>
 </div>

@@ -1,5 +1,30 @@
 {% load static %}
 
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 10px; 
+        place-items: center;
+    }
+    
+    .item1 {
+        margin: 10px;
+        
+    }
+    
+    .item2 {
+        font-size: 15px;
+        padding-bottom: 10px;
+    }
+
+    @media (max-width: 768px) {
+        .grid-container {
+            grid-template-columns: 1fr; /* Küçük ekranlar için alt alta */
+        }
+    }
+</style>
+
 <!-- Sayfa Footer Başlangıcı -->
 <div class="ak-height-125 ak-height-lg-80"></div>
 <footer class="footer style-1 footer-bg">
@@ -7,7 +32,12 @@
         <div class="ak-height-35 ak-height-lg-15"></div>
         <div class="primary-color-border"></div>
         <div class="copy-right">
-            <p class="title  text-hover-animaiton">Copyright 2024, All Right reserved</p>
+            <div class="grid-container">
+                <img class="item1" src="{% static 'img/footer.png' %}">
+                <p class="ak-section-subtitle item2">The European Commission's support for the production of this publication does not constitute an endorsement of the contents, which reflect the views only of the authors, and the Commission cannot be held responsible for any use which may be made of the information contained therein.</p>
+            </div>
+            
+            <p class="title  text-hover-animaiton" style="margin-bottom: 10px;">Copyright 2024, All Right reserved</p>
             <div class="social-icon">
                 
                 {% for socialMedia in socialMediaLinks %}

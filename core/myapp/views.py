@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from core.settings import EMAIL_HOST_USER
-from myapp.models import ModelContent, ModelEntity, Slide, MainpageOutputContent, MainpageSection, ModelNavbar, SocialMediaLink
+from myapp.models import Content, PartnerAndView, Slide, MainpageOutputContent, MainpageSection, Navbar, SocialMediaLink
 from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -13,22 +13,22 @@ from django.http import HttpResponseRedirect
 # Sitenin özetinin gösterildiği kısım
 def custom_error_400(request, exception=None):
     return render(request, '404.html', {
-    "navModels": ModelNavbar.objects.all(),
+    "navModels": Navbar.objects.all(),
   }, status=400)
 
 def custom_error_403(request, exception=None):
     return render(request, '404.html', {
-    "navModels": ModelNavbar.objects.all(),
+    "navModels": Navbar.objects.all(),
   }, status=403)
 
 def custom_error_404(request, exception=None):
     return render(request, '404.html', '404.html', {
-    "navModels": ModelNavbar.objects.all(),
+    "navModels": Navbar.objects.all(),
   }, status=404)
 
 def custom_error_500(request):
     return render(request, '404.html', {
-    "navModels": ModelNavbar.objects.all(),
+    "navModels": Navbar.objects.all(),
   }, status=500)
 
 
@@ -65,16 +65,16 @@ def index(request):
             error = True
     
   # İçerikleri çekiyoruz
-  videos = ModelContent.objects.filter(content_type='video')  # Video içeriklerini çekiyoruz
-  news = ModelContent.objects.filter(content_type='news')    # Haber içeriklerini çekiyoruz
-  galleries = ModelContent.objects.filter(content_type='gallery')  # Galeri içeriklerini çekiyoruz
-  podcasts = ModelContent.objects.filter(content_type='podcast')  # Podcast içeriklerini çekiyoruz
-  workpackages = ModelContent.objects.filter(content_type='workpackage')  # Workpackage içerikleri
-  guidebooks = ModelContent.objects.filter(content_type='guidebook')  # Guidebook içerikleri
+  videos = Content.objects.filter(content_type='video')  # Video içeriklerini çekiyoruz
+  news = Content.objects.filter(content_type='news')    # Haber içeriklerini çekiyoruz
+  galleries = Content.objects.filter(content_type='gallery')  # Galeri içeriklerini çekiyoruz
+  podcasts = Content.objects.filter(content_type='podcast')  # Podcast içeriklerini çekiyoruz
+  workpackages = Content.objects.filter(content_type='workpackage')  # Workpackage içerikleri
+  guidebooks = Content.objects.filter(content_type='guidebook')  # Guidebook içerikleri
 
   # Ortaklar ve yorumlar
-  partners = ModelEntity.objects.filter(entity_type='partner')  # Partnerleri çekiyoruz
-  reviews = ModelEntity.objects.filter(entity_type='view')  # Yorumları çekiyoruz
+  partners = PartnerAndView.objects.filter(entity_type='partner')  # Partnerleri çekiyoruz
+  reviews = PartnerAndView.objects.filter(entity_type='view')  # Yorumları çekiyoruz
 
   # Verileri şablona gönderiyoruz
     
@@ -84,6 +84,8 @@ def index(request):
     'success': success,
     'error': error,
 
+    "navModels": Navbar.objects.all(),
+    
     'videos': videos,
     'news': news,
     'galleries': galleries,
@@ -112,76 +114,76 @@ def index(request):
 # Video içeriği
 def videos(request):
   context = {
-    "videos": ModelContent.objects.filter(content_type='video'),
-    "navModels": ModelNavbar.objects.all(),
+    "videos": Content.objects.filter(content_type='video'),
+    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/video.html", context)
 
 # Etkinlik, haber, blog yazısı için içerik
 def news(request):
   context = {
-    "news": ModelContent.objects.filter(content_type='news'),
-    "navModels": ModelNavbar.objects.all(),
+    "news": Content.objects.filter(content_type='news'),
+    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/news.html", context)
 
 # Tek blog yazısının gösterilmesi için oluşturulan yapı
 def single_news(request, slug):
   
-  single= ModelContent.objects.filter(content_type='news').get(slug=slug)
+  single= Content.objects.filter(content_type='news').get(slug=slug)
   return render(request, "myapp/single-news.html",{
     'single': single,
-    "navModels": ModelNavbar.objects.all(),
+    "navModels": Navbar.objects.all(),
   })
 
 # Podcast içeriği
 def podcasts(request):
   context = {
     
-    "navModels": ModelNavbar.objects.all(),
-    "podcasts": ModelContent.objects.filter(content_type='podcast')
+    "navModels": Navbar.objects.all(),
+    "podcasts": Content.objects.filter(content_type='podcast')
   }
   return render(request, "myapp/podcast.html", context)
 
 # Gallery içeriği
 def gallery(request):
   context = {
-    "galleries": ModelContent.objects.filter(content_type='gallery'),
-    "navModels": ModelNavbar.objects.all(),
+    "galleries": Content.objects.filter(content_type='gallery'),
+    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/gallery.html", context)
 
 # Workpacketların saklandığı yapı
 def workpackets(request):
   context = {
-    "workpackages" : ModelContent.objects.filter(content_type='workpackage'),
-    "navModels": ModelNavbar.objects.all(),
+    "workpackages" : Content.objects.filter(content_type='workpackage'),
+    "navModels": Navbar.objects.all(),
     #"workpackets": WorkPacket.objects.all(),
     #"numberworkpackets": NumberWorkPacket.objects.all()
   }
   return render(request, "myapp/workpackets.html", context)
 
 def single_workpacket(request, slug):
-  single= ModelContent.objects.filter(content_type='workpackage').get(slug=slug)
+  single= Content.objects.filter(content_type='workpackage').get(slug=slug)
   return render(request, "myapp/single-workpacket.html",{
     'single': single,
-    "navModels": ModelNavbar.objects.all()
+    "navModels": Navbar.objects.all()
   })
 
 # Etkinlik, haber, blog yazısı için içerik
 def guidebooks(request):
   context = {
-    "guidebooks": ModelContent.objects.filter(content_type='guidebook'),
-    "navModels": ModelNavbar.objects.all(),
+    "guidebooks": Content.objects.filter(content_type='guidebook'),
+    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/guidebook.html", context)
 
 # Tek blog yazısının gösterilmesi için oluşturulan yapı
 def single_guidebook(request, slug):
-  single= ModelContent.objects.filter(content_type='guidebook').get(slug=slug),
+  single= Content.objects.filter(content_type='guidebook').get(slug=slug),
   return render(request, "myapp/single-guidebook.html",{
     'single': single,
-    "navModels": ModelNavbar.objects.all()
+    "navModels": Navbar.objects.all()
   })
 
 

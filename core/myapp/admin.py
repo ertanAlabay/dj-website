@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import ModelContent, ModelEntity, Slide, MainpageOutputContent, MainpageSection, ModelNavbar, SocialMediaLink
+from .models import Content, PartnerAndView, Slide, MainpageOutputContent, MainpageSection, Navbar, SocialMediaLink
 
 # Register your models here.
 
@@ -15,12 +15,12 @@ class SiteAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(ModelNavbar)
+admin.site.register(Navbar)
 
 #Sosyal medya linkleri
 admin.site.register(SocialMediaLink)
-admin.site.register(ModelEntity)
-admin.site.register(ModelContent)
+admin.site.register(PartnerAndView)
+admin.site.register(Content)
 
 # Main page eklenen içerikler
 admin.site.register(MainpageSection)
