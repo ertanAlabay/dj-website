@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from core.settings import EMAIL_HOST_USER
-from myapp.models import Content, PartnerAndView, Slide, MainpageOutputContent, MainpageSection, Navbar, SocialMediaLink
+from myapp.models import Content, PartnerAndView, Slide, OutputContent, MainpageSection, SocialMediaLink
 from django.conf import settings
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -12,24 +12,16 @@ from django.http import HttpResponseRedirect
 # Tüm tablolarla bağlantılı.
 # Sitenin özetinin gösterildiği kısım
 def custom_error_400(request, exception=None):
-    return render(request, '404.html', {
-    "navModels": Navbar.objects.all(),
-  }, status=400)
+    return render(request, '404.html', status=400)
 
 def custom_error_403(request, exception=None):
-    return render(request, '404.html', {
-    "navModels": Navbar.objects.all(),
-  }, status=403)
+    return render(request, '404.html', status=403)
 
 def custom_error_404(request, exception=None):
-    return render(request, '404.html', '404.html', {
-    "navModels": Navbar.objects.all(),
-  }, status=404)
+    return render(request, '404.html', '404.html', status=404)
 
 def custom_error_500(request):
-    return render(request, '404.html', {
-    "navModels": Navbar.objects.all(),
-  }, status=500)
+    return render(request, '404.html', status=500)
 
 
 def index(request):
@@ -83,8 +75,6 @@ def index(request):
   context = {
     'success': success,
     'error': error,
-
-    "navModels": Navbar.objects.all(),
     
     'videos': videos,
     'news': news,
@@ -102,7 +92,7 @@ def index(request):
     'news_sections': MainpageSection.objects.filter(section_type='news'),
     'view_sections': MainpageSection.objects.filter(section_type='view'),
 
-    'outputContents': MainpageOutputContent.objects.all(),
+    'outputContents': OutputContent.objects.all(),
     'slides': Slide.objects.all(),
 
     
@@ -115,7 +105,6 @@ def index(request):
 def videos(request):
   context = {
     "videos": Content.objects.filter(content_type='video'),
-    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/video.html", context)
 
@@ -123,7 +112,6 @@ def videos(request):
 def news(request):
   context = {
     "news": Content.objects.filter(content_type='news'),
-    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/news.html", context)
 
@@ -133,14 +121,11 @@ def single_news(request, slug):
   single= Content.objects.filter(content_type='news').get(slug=slug)
   return render(request, "myapp/single-news.html",{
     'single': single,
-    "navModels": Navbar.objects.all(),
   })
 
 # Podcast içeriği
 def podcasts(request):
   context = {
-    
-    "navModels": Navbar.objects.all(),
     "podcasts": Content.objects.filter(content_type='podcast')
   }
   return render(request, "myapp/podcast.html", context)
@@ -149,7 +134,6 @@ def podcasts(request):
 def gallery(request):
   context = {
     "galleries": Content.objects.filter(content_type='gallery'),
-    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/gallery.html", context)
 
@@ -157,9 +141,6 @@ def gallery(request):
 def workpackets(request):
   context = {
     "workpackages" : Content.objects.filter(content_type='workpackage'),
-    "navModels": Navbar.objects.all(),
-    #"workpackets": WorkPacket.objects.all(),
-    #"numberworkpackets": NumberWorkPacket.objects.all()
   }
   return render(request, "myapp/workpackets.html", context)
 
@@ -167,14 +148,12 @@ def single_workpacket(request, slug):
   single= Content.objects.filter(content_type='workpackage').get(slug=slug)
   return render(request, "myapp/single-workpacket.html",{
     'single': single,
-    "navModels": Navbar.objects.all()
   })
 
 # Etkinlik, haber, blog yazısı için içerik
 def guidebooks(request):
   context = {
     "guidebooks": Content.objects.filter(content_type='guidebook'),
-    "navModels": Navbar.objects.all(),
   }
   return render(request, "myapp/guidebook.html", context)
 
@@ -183,7 +162,6 @@ def single_guidebook(request, slug):
   single= Content.objects.filter(content_type='guidebook').get(slug=slug),
   return render(request, "myapp/single-guidebook.html",{
     'single': single,
-    "navModels": Navbar.objects.all()
   })
 
 

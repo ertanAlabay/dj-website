@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Content, PartnerAndView, Slide, MainpageOutputContent, MainpageSection, Navbar, SocialMediaLink
+from .models import Content, PartnerAndView, Slide, OutputContent, MainpageSection, SocialMediaLink
 
 # Register your models here.
 
@@ -13,10 +13,6 @@ class SiteAdmin(admin.ModelAdmin):
   list_filter = ("numberpacket",)
 
 
-
-
-admin.site.register(Navbar)
-
 #Sosyal medya linkleri
 admin.site.register(SocialMediaLink)
 admin.site.register(PartnerAndView)
@@ -24,6 +20,6 @@ admin.site.register(Content)
 
 # Main page eklenen içerikler
 admin.site.register(MainpageSection)
-admin.site.register(MainpageOutputContent)
+admin.site.register(OutputContent)
 admin.site.register(Slide)
 

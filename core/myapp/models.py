@@ -3,14 +3,6 @@ from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 
 
-class Navbar(models.Model):
-    title = models.CharField(max_length=100, help_text="Please just enter one of these words and follow this order: 'home, about, outputs, workpackages, news, partners, views, contact'.")
-       
-    def __str__(self):
-        return self.title
-
-
-
 # Anasayfada bulunan slayt yapısı için oluşturulan tablo
 class Slide(models.Model):
     title = models.CharField(max_length=100)
@@ -65,7 +57,7 @@ class PartnerAndView(models.Model):
 
 
 
-class MainpageOutputContent(models.Model):
+class OutputContent(models.Model):
     CONTENT_TYPE_CHOICES = [
         ('video', 'Video'),
         ('info', 'Info'),
