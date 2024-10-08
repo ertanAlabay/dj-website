@@ -17,7 +17,7 @@ urlpatterns = [
     path("workpackages", views.workpackets),
     path("workpackages/<slug:slug>/", views.single_workpacket, name="workpacket_details"),
     path("podcast", views.podcasts, name="podcast"),
-    path("news", views.news, name="event"),
+    path("news", views.news, name="news"),
     path("news/<slug:slug>/", views.single_news, name="news_details" ),      
     path("guidebooks", views.guidebooks, name="guidebook"),
     path("guidebook/<slug:slug>/", views.single_guidebook, name="guidebook_details" ),      
