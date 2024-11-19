@@ -1,32 +1,33 @@
 {% load static %}
 <style>
-    .gallery {
-      display: grid;
-      grid-gap: 10px;
-      grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
-      grid-auto-rows: minmax(350px, 200px);
-      grid-auto-flow: dense;
-    }
-    .gallery .d1 {
-      overflow: hidden;
-      position: relative;
-    }
-    .gallery .d1:hover .frame {
-      top: 0;
-    }
-    .gallery .d1 img {
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-         object-fit: cover;
-      transition: 1s;
-      transition-delay: 0.2s;
-    }
-    .gallery .d1:hover img {
-      transform: scale(1.2);
-      opacity: 1;
-    }
-  </style>
+  .gallery {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(50%, 1fr));
+    grid-auto-rows: minmax(350px, 200px);
+    grid-auto-flow: dense;
+  }
+  .gallery .d1 {
+    overflow: hidden;
+    position: relative;    
+    margin: 5px;
+  }
+  .gallery .d1:hover .frame {
+    top: 0;
+  }
+  .gallery .d1 img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+    transition: 1s;
+    transition-delay: 0.2s;
+  }
+  .gallery .d1:hover img {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+</style>
 
 <!-- Gallery Başlangıç-->
 <div class="ak-height-125 ak-height-lg-80"></div>
@@ -35,19 +36,21 @@
     <div class="gallery" id="static-thumbnails">
         <div class="d1">
             <!-- Gallery sayfasından 1 adet öge anasayfada gösterilmektedir. -->
-            {% for gallery in galleries|slice:1 %}
-                <a href="{{gallery.file.url}}" target="_blank">
-                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 20px; background-color: black; opacity: 70%">
-                        <p style="text-align: center;">{{ gallery.title|title }}</p>
-                    </div>
-                    <img src={{gallery.image.url}} alt="Photo" />
-                    <div class="frame gallery-hover-icon">
-                        <span><img src="{% static 'img/downloads.svg' %}" alt="zoom"></span>
-                    </div>
-                </a>            
+            {% for gallery in galleries|slice:1 %} 
+              <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; padding: 20px; background-color: black; opacity: 70%">
+                <p style="text-align: center;">{{ gallery.title|title }}</p>
+              </div>
+              <img src={{gallery.image.url}} alt="Photo" />
+              <a href="{% url 'gallery_details' gallery.slug %}">
+                <div class="frame gallery-hover-icon">
+                    <span>
+                      <img src="{% static 'img/downloads.svg' %}" alt="zoom">
+                    </span>
+                </div>
+              </a>            
             {% endfor %}
         </div>
-    </div>
+    </div><!---->
     <!-- Gallery Bitiş-->
 
     <!-- Gallery sayfasına yönlendiren button -->

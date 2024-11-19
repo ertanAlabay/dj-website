@@ -137,6 +137,13 @@ def gallery(request):
   }
   return render(request, "myapp/gallery.html", context)
 
+def single_gallery(request, slug):
+
+  single= Content.objects.filter(content_type='gallery').get(slug=slug)
+  return render(request, "myapp/single-infographic.html",{
+    'single': single,
+})
+
 # Workpacketların saklandığı yapı
 def workpackets(request):
   context = {

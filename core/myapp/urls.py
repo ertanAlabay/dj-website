@@ -14,6 +14,7 @@ urlpatterns = [
     path("home", views.index),
     path("videos", views.videos, name="video"),
     path("gallery", views.gallery, name="gallery"),
+    path("gallery/<slug:slug>/", views.single_gallery, name="gallery_details" ),
     path("workpackages", views.workpackets),
     path("workpackages/<slug:slug>/", views.single_workpacket, name="workpacket_details"),
     path("podcast", views.podcasts, name="podcast"),

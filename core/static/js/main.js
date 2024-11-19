@@ -61,6 +61,28 @@
  --------------------------------------------------------------*/
 
   function preloader() {
+    // Sayfa yüklenmeye başladığında animasyon başlasın
+    setTimeout(function () {
+        // Preloader sınıfını ekleyerek animasyonu başlat
+        $("#preloader").addClass("loaded");
+
+        if ($("#preloader").hasClass("loaded")) {
+            // 90 saniye bekledikten sonra preloader'ı kaldır
+            setTimeout(function () {
+                $("#preloader")
+                    .queue(function () {
+                        $(this).remove(); // Preloader öğesini tamamen kaldır
+                    }).fadeOut(); // Animasyonlu şekilde 500ms içinde kaldır
+            }, 500); // Preloader'ı kaldırmadan önce bekleme (isteğe bağlı, 500ms)
+        }
+    }, 900); // 90 saniye (90000ms) boyunca preloader görünür kalacak
+  }
+
+  $(document).ready(function () {
+    preloader(); // Sayfa yüklendikten sonra preload fonksiyonunu çalıştır
+  });
+
+  /*function preloader() {
     setTimeout(function () {
       $("#preloader").addClass("loaded");
       if ($("#preloader").hasClass("loaded")) {
@@ -72,7 +94,7 @@
           .fadeOut();
       }
     }, 200);
-  }
+  }*/
 
   /*--------------------------------------------------------------
      2. Mobile  Menu  

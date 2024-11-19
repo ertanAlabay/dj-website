@@ -236,7 +236,140 @@ kbd {
 /*--------------------------------------------------------------
   3. Preloader
 ----------------------------------------------------------------*/
+
 @keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(360deg); /* İlk tur tamamlanır */
+  }
+  100% {
+    transform: rotate(720deg); /* 2. tur tamamlanır */
+  }
+}
+
+/* Sayfa genelini kapsayan preloader */
+.preloader-content {
+  background-color: #000; /* Arka plan rengi */
+  position: fixed; /* Sayfa boyunca sabit */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* En üstte görünür */
+  display: flex;
+  justify-content: center; /* Yatayda ortalar */
+  align-items: center; /* Dikeyde ortalar */
+}
+
+
+.loading-window {
+  color: var(--primary-color);
+  background-color: #000;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); /* Merkezi konumlandırma */
+  z-index: 1111199;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-window .dots {
+  display: inline-block;
+  width: 5px;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: dots 1.5s linear infinite;
+  transition: all 1s;
+}
+
+/* Resmin sadece dönmesini sağlıyoruz */
+/* Resim için stiller */
+.car {
+  width: 100px; /* İstediğiniz genişlik */
+  height: auto; /* Oranı koruyarak yüksekliği ayarlar */
+  transform: none; /* Dönme efektini kaldırıyoruz */
+}
+
+.car-detail {
+  position: absolute;
+  display: block;
+  background: var(--primary-color);
+  animation: speed 0.5s linear infinite;
+}
+
+.car-detail.spoiler {
+  width: 0;
+  height: 0;
+  top: 7px;
+  background: none;
+  border: 20px solid transparent;
+  border-bottom: 8px solid var(--primary-color);
+  border-left: 20px solid var(--primary-color);
+}
+
+.car-detail.back {
+  height: 20px;
+  width: 92px;
+  top: 15px;
+  left: 0px;
+}
+
+.car-detail.center {
+  height: 35px;
+  width: 75px;
+  left: 12px;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 45px 40px;
+  border: 4px solid var(--primary-color);
+  background: none;
+  box-sizing: border-box;
+}
+
+.car-detail.front {
+  height: 20px;
+  width: 50px;
+  top: 15px;
+  left: 67px;
+  border-top-right-radius: 50px 40px;
+  border-bottom-right-radius: 10px;
+}
+
+.car-detail.wheel {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  top: 20px;
+  left: 12px;
+  border: 3px solid #000;
+  background: linear-gradient(45deg, transparent 45%, #fff 46%, #fff 54%, transparent 55%), linear-gradient(-45deg, transparent 45%, #fff 46%, #fff 54%, transparent 55%), linear-gradient(90deg, transparent 45%, #fff 46%, #fff 54%, transparent 55%), linear-gradient(0deg, transparent 45%, #fff 46%, #fff 54%, transparent 55%), radial-gradient(#fff 29%, transparent 30%, transparent 50%, #fff 51%), #000;
+  animation: spin 4s linear 0s infinite;
+}
+
+.preloader-content.loaded .car {
+  position: absolute;
+  right: -1000px;
+}
+
+/* Yeni eklenen animasyon bitişi ile sayfanın yüklenmesini sağlama */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Sayfanın animasyon sonrası kaybolması */
+.preloader-content.loaded {
+  animation: fadeOut 1s forwards;
+}
+
+/*@keyframes spin {
   0% {
     transform: translate(2px, 1px) rotate(0deg);
   }
@@ -371,9 +504,9 @@ kbd {
   position: absolute;
   width: 117px;
   height: 42px;
-  right: 0%;
-  transition: right 1s ease-in-out;
-}
+  /*right: 0%;*/
+  /*transition: right 1s ease-in-out;
+}*/
 .car .strike {
   position: absolute;
   width: 11px;
@@ -460,6 +593,7 @@ kbd {
   position: absolute;
   right: -1000px;
 }
+
 
 /*--------------------------------------------------------------
   4. Spacing
