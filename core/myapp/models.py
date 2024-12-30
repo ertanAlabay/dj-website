@@ -21,6 +21,7 @@ class Content(models.Model):
         ('workpackage', 'Workpackage'),
         ('gallery', 'Gallery'),
         ('guidebook', 'Guidebook'),
+        ('rtuk', 'Rtuk'),
     ]
 
     content_type = models.CharField(max_length=20, choices=CONTENT_TYPE_CHOICES)  # Type of content (news, podcast, etc.)
@@ -63,6 +64,7 @@ class OutputContent(models.Model):
         ('info', 'Info'),
         ('podcast', 'Podcast'),
         ('guidebook', 'Guidebook'),
+        ('rtuk', 'Rtuk'),
     ]
     content_type = models.CharField(max_length=50, choices=CONTENT_TYPE_CHOICES)
     title = models.CharField(max_length=100)

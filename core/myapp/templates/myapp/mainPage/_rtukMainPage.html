@@ -1,0 +1,27 @@
+{% load static %}
+
+<!-- Gallery Başlangıç-->
+<div class="ak-height-125 ak-height-lg-80"></div>
+<div>
+    <h4>{{content.title}}<h4><!---->
+    <div class="gallery" id="static-thumbnails">
+        <div class="item">
+            <div class="ak-height-50 ak-height-lg-50"></div>
+            <div class="row row-cols-1 row-cols-md-1 row-cols-lg-3 g-5 g-lg-4">
+                <!-- Event sayfasından 3 adet öge anasayfada gösterilmektedir. -->
+                {% for rtuk in rtuks|slice:":3" %}
+                    {% include "myapp/partials/_rtuk.html" %}
+                {% endfor %} 
+            </div>
+        </div>
+    </div>
+    <!-- Gallery Bitiş-->
+
+    <!-- Gallery sayfasına yönlendiren button -->
+    <div class="ak-height-50 ak-height-lg-20"></div>
+    <div class="container" style="display: flex; justify-content: center; align-items: center;">
+            <h4 class="title">
+                <a href="{% url "rtuk" %}" class="title common-btn"> View More Rtuk</a>
+            </h4>
+    </div>
+</div>

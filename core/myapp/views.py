@@ -64,6 +64,8 @@ def index(request):
   workpackages = Content.objects.filter(content_type='workpackage')  # Workpackage içerikleri
   guidebooks = Content.objects.filter(content_type='guidebook')  # Guidebook içerikleri
 
+  rtuks = Content.objects.filter(content_type='rtuk')
+
   # Ortaklar ve yorumlar
   partners = PartnerAndView.objects.filter(entity_type='partner')  # Partnerleri çekiyoruz
   reviews = PartnerAndView.objects.filter(entity_type='view')  # Yorumları çekiyoruz
@@ -84,6 +86,8 @@ def index(request):
     'partners': partners,
     'reviews': reviews,
     'guidebooks': guidebooks,
+
+    'rtuks': rtuks,
 
     "socialMediaLinks": SocialMediaLink.objects.all(),
     'about_sections': MainpageSection.objects.filter(section_type='about'),
@@ -168,6 +172,20 @@ def guidebooks(request):
 def single_guidebook(request, slug):
   single= Content.objects.filter(content_type='guidebook').get(slug=slug),
   return render(request, "myapp/single-guidebook.html",{
+    'single': single,
+  })
+
+# Etkinlik, haber, blog yazısı için içerik
+def rtuk(request):
+  context = {
+    "rtuks": Content.objects.filter(content_type='rtuk'),
+  }
+  return render(request, "myapp/rtuk.html", context)
+
+# Tek blog yazısının gösterilmesi için oluşturulan yapı
+def single_rtuk(request, slug):
+  single= Content.objects.filter(content_type='rtuk').get(slug=slug),
+  return render(request, "myapp/single-rtuk.html",{
     'single': single,
   })
 

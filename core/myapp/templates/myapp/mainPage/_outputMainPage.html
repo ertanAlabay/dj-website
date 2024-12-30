@@ -18,6 +18,8 @@
             {% include "myapp/mainPage/_podcastsMainPage.html" %}
         {% elif content.content_type == 'guidebook' %}
             {% include "myapp/mainPage/_guidebookMainPage.html" %}
+        {% elif content.content_type == 'rtuk' %}
+            {% include "myapp/mainPage/_rtukMainPage.html" %}
         {% endif %}
     {% endfor %}
 

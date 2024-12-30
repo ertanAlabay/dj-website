@@ -1,0 +1,38 @@
+{% load static %}
+
+
+<!-- 
+Event sayfasında gösterilen cardların oluşturulduğu yapıdır.
+Buradaki cardlara tıklandığında slug ismine göre 
+single-event.html sayfasına yönlendirmektedir. 
+-->
+<div class="col">
+  <div class="service-card-style-2" data-aos="fade-up">
+      <div class="service-icon">
+        <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="47"
+        height="47"
+        viewBox="0 0 47 47"
+        fill="none"
+    >
+        <text
+            x="50%"
+            y="50%"
+            dominant-baseline="middle"
+            text-anchor="middle"
+            font-family="Arial, sans-serif"
+            font-size="20"
+            fill="white"
+        >
+            PDF
+        </text>
+    </svg>
+      </div>        
+      <div class="service-desp">
+      <a href="{{ rtuk.file.url }}" class="title" download>{{ rtuk.title }}</a>
+      <p class="desp">{{ rtuk.description }}</p>
+      <a href="{{ rtuk.file.url }}" class="more-btn" download>Download</a>
+      </div>
+  </div>
+</div>
